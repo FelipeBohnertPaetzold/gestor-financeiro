@@ -10,7 +10,7 @@
         ]); ?>
     </script>
 </head>
-<body class="ls-theme-gold">
+<body class="ls-theme-turquoise">
 <div class="ls-topbar">
 
     <!-- Barra de Notificações -->
@@ -30,8 +30,6 @@
     </div>
 
     <span class="ls-show-sidebar ls-ico-menu"></span>
-
-    <a href="/locawebstyle/documentacao/exemplos//pre-painel"  class="ls-go-next"><span class="ls-text">Voltar à lista de serviços</span></a>
 
     <!-- Nome do produto/marca com sidebar -->
     <h1 class="ls-brand-name">
