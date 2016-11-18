@@ -4,7 +4,7 @@
     <div class="container-fluid">
         <h2 class="ls-title-intro">
             <span style="font-size: 20px; color: #8c8c8c">
-                Você está criand seu "Cadastro"!
+                Você está criando seu "Cadastro"!
             </span>
             <strong style="color: #8c8c8c; float: right"><i class="ls-ico-user"></i> Cadastro</strong>
         </h2>

@@ -11,7 +11,15 @@
 |
 */
 Route::group(['middleware' => ['auth']], function () {
-    Route::get('/home', 'HomeController@index');
+    Route::group(['prefix' => 'users'], function (){
+        Route::get('/temas', 'TemaController@trocarTemaView');
+        Route::post('/temas/atualizar', 'TemaController@update');
+    });
+
+
+    Route::get('/home', function () {
+        return view('home.home');
+    });
     Route::get('/', 'HomeController@index');
     Route::get('/logout', 'Auth\LoginController@logout');
 

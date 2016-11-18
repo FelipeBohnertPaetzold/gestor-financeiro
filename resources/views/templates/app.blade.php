@@ -4,7 +4,7 @@
     <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no,minimal-ui">
     <link rel="stylesheet" type="text/css" href="//assets.locaweb.com.br/locastyle/3.8.5/stylesheets/locastyle.css">
 </head>
-<body class="ls-theme-turquoise">
+<body class="{{Auth::user()->tema->chave_de_tema}}">
 <div class="ls-topbar">
 
     <!-- Barra de Notificações -->
@@ -62,7 +62,7 @@
                 <li>
                     <a href="#" class="ls-ico-cog" title="Configurações">Configurações</a>
                     <ul>
-                        <li><a href="#">Aparência <i style="float: right" class="ls-ico-paint-format"></i></a></li>
+                        <li><a href="/users/temas">Aparência <i style="float: right" class="ls-ico-paint-format"></i></a></li>
                         <li><a href="#">Suporte <i style="float: right" class="ls-ico-envelop"></i></a></li>
                     </ul>
                 </li>
