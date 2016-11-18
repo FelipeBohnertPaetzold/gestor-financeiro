@@ -34,9 +34,8 @@
                             </div>
 
                             <input type="submit" value="Entrar" class="ls-btn-primary ls-btn-block ls-btn-lg">
-                            <p class="ls-txt-center ls-login-signup">Não possui um usuário? <a href="/register">Cadastre-se
-                                    agora</a></p>
-
+                            <p class="ls-txt-center ls-login-signup">Não possui um usuário?</p>
+                            <p class="ls-txt-center"><a href="/register">Cadastre-se agora</a></p>
                         </fieldset>
                     </form>
                 </div>
