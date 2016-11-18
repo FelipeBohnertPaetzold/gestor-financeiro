@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no,minimal-ui">
     <link rel="stylesheet" type="text/css" href="//assets.locaweb.com.br/locastyle/3.8.5/stylesheets/locastyle.css">
 </head>
 <body class="ls-theme-turquoise">
@@ -20,8 +21,7 @@
         <div data-ls-module="dropdown" class="ls-dropdown ls-user-account">
             <a href="#" class="ls-ico-user">
                 <img src="https://media.licdn.com/mpr/mpr/shrinknp_400_400/AAEAAQAAAAAAAAlbAAAAJDEyMjQzNTg0LTA0NjAtNDljNi1hMjMzLTFiYjYzZjYwMDMwYw.jpg" alt="" />
-                <span class="ls-name">Felipe Bohnert</span>
-                (lipe)
+                <span class="ls-name">Olá, {{ Auth::user()->name }}</span>
             </a>
 
             <nav class="ls-dropdown-nav ls-user-menu">
@@ -29,7 +29,7 @@
                     <li><a href="#">Meus dados</a></li>
                     <li><a href="#">Faturas</a></li>
                     <li><a href="#">Planos</a></li>
-                    <li><a href="#">Sair</a></li>
+                    <li><a href="{{ url('/logout') }}">Sair</a></li>
                 </ul>
             </nav>
         </div>
@@ -39,7 +39,7 @@
 
     <!-- Nome do produto/marca com sidebar -->
     <h1 class="ls-brand-name">
-        <a href="home" class="ls-ico-stats">
+        <a style="cursor: default" class="ls-ico-stats">
             <small>Gerencie suas finanças</small>
             Gestor Financeiro
         </a>
@@ -52,11 +52,10 @@
 <aside class="ls-sidebar">
 
     <div class="ls-sidebar-inner">
-        <a href="/locawebstyle/documentacao/exemplos//pre-painel"  class="ls-go-prev"><span class="ls-text">Voltar à lista de serviços</span></a>
-
         <nav class="ls-menu">
             <ul>
-                <li><a href="/" class="ls-ico-dashboard" title="Dashboard">Dashboard <i style="float: right" class="ls-ico-checkmark"></i></a></li>
+                <li><a href="/dashboard" class="ls-ico-dashboard" title="Dashboard">Dashboard <i style="float: right" class="ls-ico-checkmark"></i></a></li>
+                <li><a href="#" class="ls-ico-stats" title="Contas">Contas</a></li>
                 <li><a href="#" class="ls-ico-plus" title="A entrar">A Entrar</a></li>
                 <li><a href="#" class="ls-ico-minus" title="Despesas">Despesas</a></li>
                 <li><a href="#" class="ls-ico-calendar" title="Agenda">Agenda</a></li>
