@@ -13,11 +13,15 @@
             <strong style="color: #8c8c8c; float: right"><i class="ls-ico-stats"></i> Contas</strong>
         </h2>
         <a style="margin-bottom: 10px;" href="/contas/nova" class="ls-btn-primary ls-ico-plus">Adicionar conta</a>
+        <div style="float: right; margin-right: 10px;">
+            <span>Saldo total <h3><strong color="">{{$total}}</strong></h3></span>
+        </div>
         <div class="ls-box">
             <table class="ls-table ls-table-striped">
                 <thead>
                 <tr>
                     <th>Nome</th>
+                    <th style="text-align: center">Saldo</th>
                     <th style="text-align: center">Criação</th>
                     <th style="text-align: center">Ações</th>
                 </tr>
@@ -26,10 +30,12 @@
                 @foreach($data as $conta)
                     <tr>
                         <td><a href="/contas/{{$conta->id}}" title="Nome da conta">{{$conta->nome}}</a></td>
+                        <td style="text-align: center">{{number_format ( $conta->saldo , 2 , "," , "." )}}</td>
                         <td style="text-align: center">{{date("d/m/Y - h:i:s A", strtotime($conta->created_at))}}</td>
                         <td style="text-align: center">
                             <a href="/contas/editar/{{$conta->id}}" title="Editar" class="ls-ico-pencil"></a>
-                            <a style="color: #db6664" href="/contas/deletar/{{$conta->id}}" title="Excluir" class="ls-ico-remove"></a>
+                            <a style="color: #db6664" href="/contas/deletar/{{$conta->id}}" title="Excluir"
+                               class="ls-ico-remove"></a>
                         </td>
                     </tr>
                 @endforeach

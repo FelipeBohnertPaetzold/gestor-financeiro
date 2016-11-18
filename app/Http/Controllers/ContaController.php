@@ -17,13 +17,28 @@ class ContaController extends Controller
         return $this->service->listaTodasView();
     }
 
+    public function detalhes($id)
+    {
+        return $this->service->detalhes($id);
+    }
+
     public function criaNovaView()
     {
         return $this->service->criaNovaView();
     }
 
+    public function editarView($id)
+    {
+        return $this->service->editarView($id);
+    }
+
     public function store(Request $request)
     {
         return $this->service->store($request);
+    }
+
+    public function update(Request $request)
+    {
+        return $this->service->update($request);
     }
 }

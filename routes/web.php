@@ -20,7 +20,10 @@ Route::group(['middleware' => ['auth']], function () {
     Route::group(['prefix' => 'contas'], function(){
         Route::get('/', 'ContaController@listaTodasView');
         Route::get('/nova', 'ContaController@criaNovaView');
+        Route::get('/editar/{id}', 'ContaController@editarView');
+        Route::get('/{id}', 'ContaController@detalhes');
         Route::post('/criar', 'ContaController@store');
+        Route::post('/update', 'ContaController@update');
     });
 
     Route::get('/home', function () {
