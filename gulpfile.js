@@ -17,6 +17,7 @@ elixir(function(mix) {
     ]);
     mix.scripts([
         './node_modules/angular/angular.min.js',
+        './resources/assets/js/mask.js',
         './resources/assets/js/app.js'
     ]);
 });

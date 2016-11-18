@@ -2,29 +2,23 @@
 
 namespace App\Http\Controllers;
 
-use App\Tema;
+use App\Http\Services\TemaService;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 
 class TemaController extends Controller
 {
-    public function __construct()
+    public function __construct(TemaService $service)
     {
-        $this->tema = new Tema();
+        $this->service = $service;
     }
 
     public function trocarTemaView()
     {
-        return view('configuracoes.aparencia', [
-            'data' => $this->tema->all()
-        ]);
+        return $this->service->trocarTemaView();
     }
 
     public function update(Request $request)
     {
-        $user = Auth::user();
-        $user->tema_id = $request->tema_id;
-        $user->update();
-        return redirect("/users/temas");
+        return $this->service->update($request);
     }
 }

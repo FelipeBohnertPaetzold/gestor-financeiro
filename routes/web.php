@@ -11,11 +11,17 @@
 |
 */
 Route::group(['middleware' => ['auth']], function () {
+
     Route::group(['prefix' => 'users'], function (){
         Route::get('/temas', 'TemaController@trocarTemaView');
         Route::post('/temas/atualizar', 'TemaController@update');
     });
 
+    Route::group(['prefix' => 'contas'], function(){
+        Route::get('/', 'ContaController@listaTodasView');
+        Route::get('/nova', 'ContaController@criaNovaView');
+        Route::post('/criar', 'ContaController@store');
+    });
 
     Route::get('/home', function () {
         return view('home.home');

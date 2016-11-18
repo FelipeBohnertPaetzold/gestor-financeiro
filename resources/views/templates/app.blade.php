@@ -12,7 +12,8 @@
 
         <!-- Links de apoio -->
         <div class="ls-alerts-list">
-            <a href="#" class="ls-ico-bell-o" data-counter="8" data-ls-module="topbarCurtain" data-target="#ls-notification-curtain"><span>Notificações</span></a>
+            <a href="#" class="ls-ico-bell-o" data-counter="8" data-ls-module="topbarCurtain"
+               data-target="#ls-notification-curtain"><span>Notificações</span></a>
             <a href="#" class="ls-ico-bullhorn" data-ls-module="topbarCurtain" data-target="#ls-help-curtain"><span>Ajuda</span></a>
             <a href="#" class="ls-ico-question" data-ls-module="topbarCurtain" data-target="#ls-feedback-curtain"><span>Sugestões</span></a>
         </div>
@@ -20,7 +21,8 @@
         <!-- Dropdown com detalhes da conta de usuário -->
         <div data-ls-module="dropdown" class="ls-dropdown ls-user-account">
             <a href="#" class="ls-ico-user">
-                <img src="https://media.licdn.com/mpr/mpr/shrinknp_400_400/AAEAAQAAAAAAAAlbAAAAJDEyMjQzNTg0LTA0NjAtNDljNi1hMjMzLTFiYjYzZjYwMDMwYw.jpg" alt="" />
+                <img src="https://media.licdn.com/mpr/mpr/shrinknp_400_400/AAEAAQAAAAAAAAlbAAAAJDEyMjQzNTg0LTA0NjAtNDljNi1hMjMzLTFiYjYzZjYwMDMwYw.jpg"
+                     alt=""/>
                 <span class="ls-name">Olá, {{ Auth::user()->name }}</span>
             </a>
 
@@ -54,15 +56,23 @@
     <div class="ls-sidebar-inner">
         <nav class="ls-menu">
             <ul>
-                <li><a href="/dashboard" class="ls-ico-dashboard" title="Dashboard">Dashboard <i style="float: right" class="ls-ico-checkmark"></i></a></li>
-                <li><a href="#" class="ls-ico-stats" title="Contas">Contas</a></li>
+                <li><a href="/dashboard" class="ls-ico-dashboard" title="Dashboard">Dashboard</a></li>
+                <li>
+                    <a href="#" class="ls-ico-stats" title="Contas">Contas</a>
+                    <ul>
+                        <li><a href="/contas/nova">Nova <i style="float: right" class="ls-ico-plus"></i></a></li>
+                        <li><a href="/contas">Listar <i style="float: right"
+                                                        class="ls-ico-list"></i></a></li>
+                    </ul>
+                </li>
                 <li><a href="#" class="ls-ico-plus" title="A entrar">A Entrar</a></li>
                 <li><a href="#" class="ls-ico-minus" title="Despesas">Despesas</a></li>
                 <li><a href="#" class="ls-ico-calendar" title="Agenda">Agenda</a></li>
                 <li>
                     <a href="#" class="ls-ico-cog" title="Configurações">Configurações</a>
                     <ul>
-                        <li><a href="/users/temas">Aparência <i style="float: right" class="ls-ico-paint-format"></i></a></li>
+                        <li><a href="/users/temas">Aparência <i style="float: right"
+                                                                class="ls-ico-paint-format"></i></a></li>
                         <li><a href="#">Suporte <i style="float: right" class="ls-ico-envelop"></i></a></li>
                     </ul>
                 </li>
@@ -75,6 +85,11 @@
 
 
 <main class="ls-main ">
+    @if (session('message'))
+        <div class="ls-alert-success">
+            {{session('message')}}
+        </div>
+    @endif
     @yield('content')
 </main>
 
@@ -95,7 +110,8 @@
                 <a href="#" data-ls-module="dismiss" class="ls-ico-close ls-close-notification"></a>
             </li>
             <li class="ls-dismissable">
-                <a href="#">Nisi aut assumenda dignissimos qui ea in deserunt quo deleniti dolorum quo et consequatur</a>
+                <a href="#">Nisi aut assumenda dignissimos qui ea in deserunt quo deleniti dolorum quo et
+                    consequatur</a>
                 <a href="#" data-ls-module="dismiss" class="ls-ico-close ls-close-notification"></a>
             </li>
             <li class="ls-dismissable">
@@ -127,6 +143,7 @@
 
 <!-- We recommended use jQuery 1.10 or up -->
 <script type="text/javascript" src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
+<script src="/js/all.js"></script>
 <script src="http://assets.locaweb.com.br/locastyle/3.9.0/javascripts/locastyle.js" type="text/javascript"></script>
 </body>
 </html>
