@@ -69,7 +69,7 @@
                         <h3 style="font-size: 25px;" class="ls-collapse-title">{{$conta->nome}}</h3>
                     </a>
                     <div class="ls-collapse-body" id="{{$conta->id}}">
-                        <table class="ls-table ls-table-striped">
+                        <table class="ls-table ls-table-striped ls-table-bordered">
                             <thead>
                             <tr>
                                 <th>Nome</th>
