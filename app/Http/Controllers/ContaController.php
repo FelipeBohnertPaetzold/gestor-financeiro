@@ -32,6 +32,11 @@ class ContaController extends Controller
         return $this->service->editarView($id);
     }
 
+    public function deletarView($id)
+    {
+        return $this->service->deletarView($id);
+    }
+
     public function store(Request $request)
     {
         return $this->service->store($request);
@@ -40,5 +45,10 @@ class ContaController extends Controller
     public function update(Request $request)
     {
         return $this->service->update($request);
+    }
+
+    public function destroy($id)
+    {
+        return $this->service->destroy($id);
     }
 }

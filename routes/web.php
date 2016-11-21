@@ -21,6 +21,8 @@ Route::group(['middleware' => ['auth']], function () {
         Route::get('/', 'ContaController@listaTodasView');
         Route::get('/nova', 'ContaController@criaNovaView');
         Route::get('/editar/{id}', 'ContaController@editarView');
+        Route::get('/deletar/{id}', 'ContaController@deletarView');
+        Route::get('/destroy/{id}', 'ContaController@destroy');
         Route::get('/{id}', 'ContaController@detalhes');
         Route::post('/criar', 'ContaController@store');
         Route::post('/update', 'ContaController@update');

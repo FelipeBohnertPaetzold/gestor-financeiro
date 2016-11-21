@@ -10,6 +10,7 @@ namespace App\Http\Services;
 
 
 use App\Conta;
+use Illuminate\Database\QueryException;
 use Illuminate\Support\Facades\Auth;
 
 class ContaService
@@ -26,7 +27,7 @@ class ContaService
         foreach ($data as $conta) {
             $value += $conta->saldo;
         }
-        $total = number_format ( $value , 2 , "," , "." );
+        $total = number_format($value, 2, ",", ".");
         return view('contas.index', [
             'data' => $data,
             'total' => $total
@@ -36,7 +37,7 @@ class ContaService
     public function detalhes($id)
     {
         $conta = $this->conta->find($id);
-        if($conta->user_id != Auth::user()->id){
+        if (!$this->verificaPermissão($conta)) {
             return view('mensagens.negado');
         }
         return view('contas.detail', [
@@ -52,10 +53,21 @@ class ContaService
     public function editarView($id)
     {
         $conta = $this->conta->find($id);
-        if($conta->user_id != Auth::user()->id){
+        if (!$this->verificaPermissão($conta)) {
             return view('mensagens.negado');
         }
         return view('contas.edit', [
+            'conta' => $conta
+        ]);
+    }
+
+    public function deletarView($id)
+    {
+        $conta = $this->conta->find($id);
+        if(!$this->verificaPermissão($conta)) {
+            return view('mensagens.negado');
+        }
+        return view('contas.delete', [
             'conta' => $conta
         ]);
     }
@@ -74,13 +86,35 @@ class ContaService
         $data = $request->all();
         $data['updated_at'] = date('Y-m-d H:i:s');
         $conta = $this->conta->find($request->id);
-        if($conta->user_id != Auth::user()->id){
+        if (!$this->verificaPermissão($conta)) {
             return view('mensagens.negado');
         }
         $conta->update($data);
         return redirect('/contas/' . $request->id)->with('message',
-                'Conta salva com sucesso!'
-            );
+            'Conta salva com sucesso!'
+        );
+    }
+
+    public function destroy($id)
+    {
+        $conta = $this->conta->find($id);
+        if (!$this->verificaPermissão($conta)) {
+            return view('mensagens.negado');
+        }
+        try {
+            $conta->delete();
+            return redirect('/contas')->with('message', 'Conta removida com sucesso!');
+        } catch (QueryException $e) {
+            return redirect('/contas/' . $conta->id)->withErrors('Existem vinculos na conta!');
+        }
+    }
+
+    private function verificaPermissão($conta)
+    {
+        if ($conta->user_id == Auth::user()->id) {
+            return true;
+        }
+        return false;
     }
 
 }
