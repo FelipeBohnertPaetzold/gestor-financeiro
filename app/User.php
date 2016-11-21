@@ -21,4 +21,14 @@ class User extends Authenticatable
     {
         return $this->belongsTo(Tema::class, 'tema_id');
     }
+
+    public function contas()
+    {
+        return $this->hasMany(Conta::class);
+    }
+
+    public function despesas()
+    {
+        return $this->hasMany(Despesa::class);
+    }
 }

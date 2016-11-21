@@ -28,6 +28,13 @@ Route::group(['middleware' => ['auth']], function () {
         Route::post('/update', 'ContaController@update');
     });
 
+    Route::group(['prefix' => 'despesas'], function (){
+        Route::get('/', 'DespesaController@listaTodasView');
+        Route::get('/nova', 'DespesaController@criaNovaView');
+        Route::post('/criar', 'DespesaController@store');
+        Route::post('/filtro/data', 'DespesaController@filtroData');
+    });
+
     Route::get('/home', function () {
         return view('home.home');
     });

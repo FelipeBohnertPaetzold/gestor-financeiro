@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 
 class Conta extends Model
 {
@@ -15,7 +16,14 @@ class Conta extends Model
         return $this->belongsTo(User::class, 'user_id');
     }
 
-    public function contasDoUsuario($user) {
-        return $this->where('user_id', '=', $user->id)->get();
+    public function despesaMes()
+    {
+        return DB::table('despesa')->where('data_vencimento' , '=', date('Y-m'))->get();
     }
+
+    public function despesas()
+    {
+        return $this->hasMany(Despesa::class);
+    }
+
 }

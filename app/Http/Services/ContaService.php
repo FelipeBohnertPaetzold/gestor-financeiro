@@ -22,7 +22,7 @@ class ContaService
 
     public function listaTodasView()
     {
-        $data = $this->conta->contasDoUsuario(Auth::user());
+        $data = Auth::user()->contas;
         $value = 0;
         foreach ($data as $conta) {
             $value += $conta->saldo;
@@ -109,12 +109,17 @@ class ContaService
         }
     }
 
-    private function verificaPermissão($conta)
+    public function verificaPermissão($conta)
     {
         if ($conta->user_id == Auth::user()->id) {
             return true;
         }
         return false;
+    }
+
+    public function buscaContaPorId($id)
+    {
+        return $this->conta->find($id);
     }
 
 }

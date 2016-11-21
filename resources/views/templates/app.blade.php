@@ -3,6 +3,7 @@
 <head>
     <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no,minimal-ui">
     <link rel="stylesheet" type="text/css" href="//assets.locaweb.com.br/locastyle/3.8.5/stylesheets/locastyle.css">
+    <link rel="stylesheet" type="text/css" href="css/all.css">
 </head>
 <body class="{{Auth::user()->tema->chave_de_tema}}">
 <div class="ls-topbar">
@@ -66,7 +67,7 @@
                     </ul>
                 </li>
                 <li><a href="#" class="ls-ico-plus" title="A entrar">A Entrar</a></li>
-                <li><a href="#" class="ls-ico-minus" title="Despesas">Despesas</a></li>
+                <li><a href="/despesas" class="ls-ico-minus" title="Despesas">Despesas</a></li>
                 <li><a href="#" class="ls-ico-calendar" title="Agenda">Agenda</a></li>
                 <li>
                     <a href="#" class="ls-ico-cog" title="Configurações">Configurações</a>
