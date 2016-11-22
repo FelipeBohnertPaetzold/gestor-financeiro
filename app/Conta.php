@@ -3,7 +3,6 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Facades\DB;
 
 class Conta extends Model
 {
@@ -16,9 +15,18 @@ class Conta extends Model
         return $this->belongsTo(User::class, 'user_id');
     }
 
-    public function despesaMes()
+    public function filtraData($inicial, $final)
     {
-        return DB::table('despesa')->where('data_vencimento' , '=', date('Y-m'))->get();
+        return $this->despesas()
+            ->where('data_vencimento', '>=', $inicial)
+            ->where('data_vencimento', '<=', $final);
+    }
+
+    public function despesasMes()
+    {
+        return $this->despesas()
+            ->whereMonth('data_vencimento', '=', date('m'))
+            ->whereYear('data_vencimento', '=', date('Y'));
     }
 
     public function despesas()

@@ -64,24 +64,25 @@
             <h1>Contas</h1>
             <br/>
             @foreach($data as $conta)
-                <div style="margin-bottom: 50px;" data-ls-module="collapse" data-target="#{{$conta->id}}" class="ls-collapse ls-collapse-opened">
-                    <a href="#" class="ls-collapse-header">
-                        <h3 style="font-size: 25px;" class="ls-collapse-title">{{$conta->nome}}</h3>
-                    </a>
-                    <div class="ls-collapse-body" id="{{$conta->id}}">
-                        <table class="ls-table ls-table-striped ls-table-bordered">
-                            <thead>
-                            <tr>
-                                <th>Nome</th>
-                                <th style="text-align: center">Valor</th>
-                                <th style="text-align: center">Vencimento</th>
-                                <th style="text-align: center">Status</th>
-                                <th style="text-align: center">Ações</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            @foreach($conta->despesas as $despesa)
-                                @if(date('Y-m', strtotime($despesa->data_vencimento)) <= date('Y-m'))
+                @if($conta->despesasMes->count() > 0)
+                    <div style="margin-bottom: 50px;" data-ls-module="collapse" data-target="#{{$conta->id}}"
+                         class="ls-collapse ls-collapse-opened">
+                        <a href="#" class="ls-collapse-header">
+                            <h3 style="font-size: 25px;" class="ls-collapse-title">{{$conta->nome}}</h3>
+                        </a>
+                        <div class="ls-collapse-body" id="{{$conta->id}}">
+                            <table class="ls-table ls-table-striped ls-table-bordered">
+                                <thead>
+                                <tr>
+                                    <th>Nome</th>
+                                    <th style="text-align: center">Valor</th>
+                                    <th style="text-align: center">Vencimento</th>
+                                    <th style="text-align: center">Status</th>
+                                    <th style="text-align: center">Ações</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                @foreach($conta->despesasMes as $despesa)
                                     <tr>
                                         <td><a href="/contas/{{$despesa->id}}"
                                                title="Nome da despesa">{{$despesa->nome}}</a>
@@ -107,12 +108,12 @@
                                                class="ls-ico-remove"></a>
                                         </td>
                                     </tr>
-                                @endif
-                            @endforeach
-                            </tbody>
-                        </table>
+                                @endforeach
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
-                </div>
+                @endif
             @endforeach
         </div>
     </div>
