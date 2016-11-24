@@ -30,8 +30,11 @@
                 @foreach($data as $conta)
                     <tr>
                         <td><a href="/contas/{{$conta->id}}" title="Nome da conta">{{$conta->nome}}
-                            </a><a href="/despesas" class="ls-tag-danger"> {{count($conta->despesasMes)}} Despesas</a></td>
-                        <td class="@if($conta->saldo <= 0)vencido @else a-vencer @endif" style="text-align: center">{{number_format ( $conta->saldo , 2 , "," , "." )}}</td>
+                            </a>@if( count($conta->despesasMes) > 0 )<a href="/despesas"
+                                                                        class="ls-tag-danger"> {{count($conta->despesasMes)}}
+                                Despesas</a></td>@endif
+                        <td class="@if($conta->saldo <= 0)vencido @else a-vencer @endif"
+                            style="text-align: center"><span style="font-size: 12px;">R$ </span>{{number_format ( $conta->saldo , 2 , "," , "." )}}</td>
                         <td style="text-align: center">{{date("d/m/Y - h:i:s A", strtotime($conta->created_at))}}</td>
                         <td style="text-align: center">
                             <a href="/contas/editar/{{$conta->id}}" title="Editar" class="ls-ico-pencil"></a>

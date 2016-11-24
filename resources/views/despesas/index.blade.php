@@ -13,8 +13,8 @@
             <strong style="color: #8c8c8c; float: right"><i class="ls-ico-stats"></i> Despesas</strong>
         </h2>
 
-        <a style="margin-bottom: 10px;" href="/despesas/nova" class="ls-btn-primary ls-ico-plus">Adicionar despesa</a>
-        <div style="float: right; margin-right: 10px; margin-bottom: 20px;">
+        <a href="/despesas/nova" class="ls-btn-primary ls-ico-plus">Adicionar despesa</a>
+        <div style="float: right; margin-right: 10px;">
             <span>Total <h3><strong color="">{{$total}}</strong></h3></span>
         </div>
 
@@ -87,7 +87,7 @@
                                         <td><a href="/despesas/{{$despesa->id}}"
                                                title="Nome da despesa">{{$despesa->nome}}</a>
                                         </td>
-                                        <td style="text-align: center">{{number_format ( $despesa->valor , 2 , "," , "." )}}</td>
+                                        <td class="vencido" style="text-align: center"><span style="font-size: 12px;">R$ </span>{{number_format ( $despesa->valor , 2 , "," , "." )}}</td>
                                         <td style="text-align: center">{{date("d/m/Y", strtotime($despesa->data_vencimento))}}</td>
                                         <td style="text-align: center">
                                             @if(date('Y-m-d', strtotime($despesa->data_vencimento)) < date('Y-m-d'))

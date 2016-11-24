@@ -11,14 +11,14 @@ class RedirectContas extends Command
      *
      * @var string
      */
-    protected $signature = 'redirect:contas';
+    protected $signature = 'cria:pagamento';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'Redireciona para a pagina contas';
+    protected $description = 'Criar pagamentos para todas as despesas vencidas';
 
     /**
      * Create a new command instance.
@@ -37,6 +37,6 @@ class RedirectContas extends Command
      */
     public function handle()
     {
-        \Log::info('\n Eu estive aqui as @' . \Carbon\Carbon::now());
+
     }
 }

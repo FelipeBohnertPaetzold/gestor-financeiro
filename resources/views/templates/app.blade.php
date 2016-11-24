@@ -3,7 +3,7 @@
 <head>
     <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no,minimal-ui">
     <link rel="stylesheet" type="text/css" href="//assets.locaweb.com.br/locastyle/3.8.5/stylesheets/locastyle.css">
-    <link rel="stylesheet" type="text/css" href="css/all.css">
+    <link rel="stylesheet" type="text/css" href="/css/all.css">
 </head>
 <body class="{{Auth::user()->tema->chave_de_tema}}">
 <div class="ls-topbar">
@@ -22,8 +22,6 @@
         <!-- Dropdown com detalhes da conta de usuário -->
         <div data-ls-module="dropdown" class="ls-dropdown ls-user-account">
             <a href="#" class="ls-ico-user">
-                <img src="https://media.licdn.com/mpr/mpr/shrinknp_400_400/AAEAAQAAAAAAAAlbAAAAJDEyMjQzNTg0LTA0NjAtNDljNi1hMjMzLTFiYjYzZjYwMDMwYw.jpg"
-                     alt=""/>
                 <span class="ls-name">Olá, {{ Auth::user()->name }}</span>
             </a>
 

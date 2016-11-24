@@ -13,6 +13,7 @@
             </span>
             <strong style="color: #8c8c8c; float: right"><i class="ls-ico-stats"></i> Despesas</strong>
         </h2>
+        <a href="/pagamentos/pagar/{{$despesa->id}}" class="ls-btn ls-ico-circle-right">Pagar agora</a>
         <div class="ls-box ls-board-box">
             <header class="ls-info-header">
                 <h2 class="ls-title-3">{{$despesa->nome}}</h2>
@@ -40,13 +41,13 @@
                         </div>
                         <div class="ls-box-body">
                             @if($despesa->quitada)
-                                <h2 style="font-weight: bold; color: #27ae60;">Pago</h2>
+                                <h2 class="quitada">Pago</h2>
                             @elseif(!$despesa->quitada && $despesa->data_vencimento == date('Y-m-d'))
-                                <h2 style="font-weight: bold; color: #e67e22;">Vence hoje</h2>
+                                <h2  class="vence-hoje">Vence hoje</h2>
                             @elseif(!$despesa->quitada && $despesa->data_vencimento < date('Y-m-d'))
-                                <h2 style="font-weight: bold; color: #c0392b;">Vencida</h2>
+                                <h2 class="vencido">Vencida</h2>
                             @elseif(!$despesa->quitada && $despesa->data_vencimento > date('Y-m-d'))
-                                <h2 style="font-weight: bold; color: #2980b9;">A vencer</h2>
+                                <h2 class="a-vencer">A vencer</h2>
                             @endif
                         </div>
                     </div>
