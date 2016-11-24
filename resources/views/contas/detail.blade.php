@@ -15,7 +15,9 @@
         </h2>
         <div class="ls-box ls-board-box">
             <header class="ls-info-header">
-                <h2 class="ls-title-3">{{$conta->nome}} <a href="/contas/editar/{{$conta->id}}" style="margin-left: 10px;" title="Editar" class="ls-ico-pencil"></a></h2>
+                <h2 class="ls-title-3">{{$conta->nome}} <a href="/contas/editar/{{$conta->id}}"
+                                                           style="margin-left: 10px;" title="Editar"
+                                                           class="ls-ico-pencil"></a></h2>
                 <p class="ls-float-right ls-float-none-xs ls-small-info">Ultima atualização
                     <strong>{{date("d/m/Y h:i A", strtotime($conta->updated_at))}}</strong></p>
             </header>
@@ -26,7 +28,8 @@
                             <h6 class="ls-title-4">Saldo</h6>
                         </div>
                         <div class="ls-box-body">
-                            <strong>{{number_format ( $conta->saldo , 2 , "," , "." )}}</strong></strong><span>R$</span>
+                            <strong>{{number_format ( $conta->saldo_atual , 2 , "," , "." )}}</strong></strong>
+                            <span>R$</span>
                         </div>
                     </div>
                 </div>
@@ -63,6 +66,54 @@
                     </div>
                 </div>
             </div>
+        </div>
+
+        <div class="ls-box ls-board-box">
+            <header class="ls-info-header">
+                <h2 class="ls-title-3">Despesas do mês</h2>
+            </header>
+            <table class="ls-table ls-table-striped ls-table-bordered">
+                <thead>
+                <tr>
+                    <th>Nome</th>
+                    <th style="text-align: center">Valor</th>
+                    <th style="text-align: center">Vencimento</th>
+                    <th style="text-align: center">Status</th>
+                    <th style="text-align: center">Ações</th>
+                </tr>
+                </thead>
+                <tbody>
+                @foreach($conta->despesasMes as $despesa)
+                    <tr>
+                        <td><a href="/despesas/{{$despesa->id}}"
+                               title="Nome da despesa">{{$despesa->nome}}</a>
+                        </td>
+                        <td class="vencido" style="text-align: center"><span
+                                    style="font-size: 12px;">R$ </span>{{number_format ( $despesa->valor , 2 , "," , "." )}}
+                        </td>
+                        <td style="text-align: center">{{date("d/m/Y", strtotime($despesa->data_vencimento))}}</td>
+                        <td style="text-align: center">
+                            @if($despesa->quitada)
+                                <span class="quitada">Pago</span>
+                            @elseif(date('Y-m-d', strtotime($despesa->data_vencimento)) < date('Y-m-d'))
+                                <span class="vencido">Vencido</span>
+                            @elseif(date('Y-m-d', strtotime($despesa->data_vencimento)) == date('Y-m-d'))
+                                <span class="vence-hoje">Vence hoje</span>
+                            @elseif(date('Y-m-d', strtotime($despesa->data_vencimento)) > date('Y-m-d'))
+                                <span class="a-vencer">A vencer</span>
+                            @endif
+                        </td>
+                        <td style="text-align: center">
+                            <a href="/despesas/editar/{{$despesa->id}}" title="Editar"
+                               class="ls-ico-pencil"></a>
+                            <a style="color: #db6664" href="/despesas/deletar/{{$despesa->id}}"
+                               title="Excluir"
+                               class="ls-ico-remove"></a>
+                        </td>
+                    </tr>
+                @endforeach
+                </tbody>
+            </table>
         </div>
     </div>
 @endsection

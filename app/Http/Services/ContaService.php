@@ -25,7 +25,7 @@ class ContaService
         $data = Auth::user()->contas;
         $value = 0;
         foreach ($data as $conta) {
-            $value += $conta->saldo;
+            $value += $conta->saldo_atual;
         }
         $total = number_format($value, 2, ",", ".");
         return view('contas.index', [
@@ -37,7 +37,7 @@ class ContaService
     public function detalhes($id)
     {
         $conta = $this->conta->find($id);
-        if (!$this->verificaPermissão($conta)) {
+        if (!$this->verificaPermissao($conta)) {
             return view('mensagens.negado');
         }
         return view('contas.detail', [
@@ -53,7 +53,7 @@ class ContaService
     public function editarView($id)
     {
         $conta = $this->conta->find($id);
-        if (!$this->verificaPermissão($conta)) {
+        if (!$this->verificaPermissao($conta)) {
             return view('mensagens.negado');
         }
         return view('contas.edit', [
@@ -74,8 +74,10 @@ class ContaService
 
     public function store($request)
     {
-        $request['user_id'] = Auth::user()->id;
-        $this->conta->create($request->all());
+        $data = $request->all();
+        $data['user_id'] = Auth::user()->id;
+        $data['saldo_atual'] = $request->saldo;
+        $this->conta->create($data);
         return redirect('/contas')->with('message',
             'Conta ' . $request['nome'] . ' criada com sucesso!'
         );
@@ -86,7 +88,7 @@ class ContaService
         $data = $request->all();
         $data['updated_at'] = date('Y-m-d H:i:s');
         $conta = $this->conta->find($request->id);
-        if (!$this->verificaPermissão($conta)) {
+        if (!$this->verificaPermissao($conta)) {
             return view('mensagens.negado');
         }
         $conta->update($data);
@@ -107,6 +109,12 @@ class ContaService
         } catch (QueryException $e) {
             return redirect('/contas/' . $conta->id)->withErrors('Existem vinculos na conta!');
         }
+    }
+
+    public function debitarPagamento($conta, $valor)
+    {
+        $conta->saldo_atual -= $valor;
+        $conta->update();
     }
 
     public function verificaPermissao($conta)

@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Conta extends Model
 {
-    protected $fillable = ['id', 'nome', 'descricao', 'saldo', 'user_id'];
+    protected $fillable = ['id', 'nome', 'descricao', 'saldo', 'saldo_atual', 'user_id'];
 
     protected $table = 'conta';
 
@@ -29,9 +29,22 @@ class Conta extends Model
             ->whereYear('data_vencimento', '=', date('Y'));
     }
 
+    public function despesasNaoQuitadasMes()
+    {
+        return $this->despesas()
+            ->where('quitada', '<>', 1)
+            ->whereMonth('data_vencimento', '=', date('m'))
+            ->whereYear('data_vencimento', '=', date('Y'));
+    }
+
     public function despesas()
     {
         return $this->hasMany(Despesa::class);
+    }
+
+    public function pagamentos()
+    {
+        return $this->hasMany(Pagamento::class);
     }
 
 }

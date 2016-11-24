@@ -41,7 +41,7 @@ class DespesaService
 
     public function detalhes($id)
     {
-        if(!$this->verificaPermissao($this->buscaDespesaPorId($id))) {
+        if (!$this->verificaPermissao($this->buscaDespesaPorId($id))) {
             return view('mensagens.negado');
         }
         return view('despesas.detail', [
@@ -77,9 +77,9 @@ class DespesaService
         $total = number_format($valor, 2, ",", ".");
 
         return view('despesas.filtro_data', [
-                'data' => $data,
-                'total' => $total
-            ]);
+            'data' => $data,
+            'total' => $total
+        ]);
     }
 
     public function store($request)
@@ -120,6 +120,15 @@ class DespesaService
 
         $this->despesa->create($data);
         return redirect('/despesas')->with('message', 'Despesa criada com sucesso!');
+    }
+
+    public function pagamentoDeDespesa($despesa, $valor)
+    {
+        if ($despesa->valor == $valor)
+        {
+            $despesa->quitada = true;
+            $despesa->update();
+        }
     }
 
     public function criaNovaView()

@@ -25,7 +25,7 @@
                     <input type="text" name="nome" value="{{$conta->nome}}" placeholder="Nome da conta" class="ls-field"
                            required>
                 </label>
-                <input type="hidden" name="saldo" placeholder="Saldo" value="{{$conta->saldo}}">
+                <input type="hidden" name="saldo_atual" placeholder="Saldo" value="{{$conta->saldo_atual}}">
                 <label class="ls-label col-md-12 col-xs-12">
                     <b class="ls-label-text">Descrição</b>
                     <p class="ls-label-info">Digite uma descrição para a conta</p>

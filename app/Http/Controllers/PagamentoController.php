@@ -12,5 +12,13 @@ class PagamentoController extends Controller
         $this->service = $service;
     }
 
+    public function pagarView($despesaId)
+    {
+        return $this->service->pagarView($despesaId);
+    }
 
+    public function store(Request $request)
+    {
+        return $this->service->store($request);
+    }
 }

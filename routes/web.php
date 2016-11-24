@@ -36,6 +36,11 @@ Route::group(['middleware' => ['auth']], function () {
         Route::post('/filtro/data', 'DespesaController@filtroData');
     });
 
+    Route::group(['prefix' => 'pagamentos'], function (){
+        Route::get('/pagar/{despesaId}', 'PagamentoController@pagarView');
+        Route::post('/criar', 'PagamentoController@store');
+    });
+
     Route::get('/home', function () {
         return view('home.home');
     });

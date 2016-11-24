@@ -87,16 +87,18 @@
                                         <td><a href="/despesas/{{$despesa->id}}"
                                                title="Nome da despesa">{{$despesa->nome}}</a>
                                         </td>
-                                        <td class="vencido" style="text-align: center"><span style="font-size: 12px;">R$ </span>{{number_format ( $despesa->valor , 2 , "," , "." )}}</td>
+                                        <td class="vencido" style="text-align: center"><span
+                                                    style="font-size: 12px;">R$ </span>{{number_format ( $despesa->valor , 2 , "," , "." )}}
+                                        </td>
                                         <td style="text-align: center">{{date("d/m/Y", strtotime($despesa->data_vencimento))}}</td>
                                         <td style="text-align: center">
-                                            @if(date('Y-m-d', strtotime($despesa->data_vencimento)) < date('Y-m-d'))
+                                            @if($despesa->quitada)
+                                                <span class="quitada">Pago</span>
+                                            @elseif(date('Y-m-d', strtotime($despesa->data_vencimento)) < date('Y-m-d'))
                                                 <span class="vencido">Vencido</span>
-                                            @endif
-                                            @if(date('Y-m-d', strtotime($despesa->data_vencimento)) == date('Y-m-d'))
+                                            @elseif(date('Y-m-d', strtotime($despesa->data_vencimento)) == date('Y-m-d'))
                                                 <span class="vence-hoje">Vence hoje</span>
-                                            @endif
-                                            @if(date('Y-m-d', strtotime($despesa->data_vencimento)) > date('Y-m-d'))
+                                            @elseif(date('Y-m-d', strtotime($despesa->data_vencimento)) > date('Y-m-d'))
                                                 <span class="a-vencer">A vencer</span>
                                             @endif
                                         </td>
