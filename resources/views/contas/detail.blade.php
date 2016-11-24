@@ -79,7 +79,6 @@
                         <th style="text-align: center">Valor</th>
                         <th style="text-align: center">Vencimento</th>
                         <th style="text-align: center">Status</th>
-                        <th style="text-align: center">Ações</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -102,13 +101,6 @@
                                 @elseif(date('Y-m-d', strtotime($despesa->data_vencimento)) > date('Y-m-d'))
                                     <span class="a-vencer">A vencer</span>
                                 @endif
-                            </td>
-                            <td style="text-align: center">
-                                <a href="/despesas/editar/{{$despesa->id}}" title="Editar"
-                                   class="ls-ico-pencil"></a>
-                                <a style="color: #db6664" href="/despesas/deletar/{{$despesa->id}}"
-                                   title="Excluir"
-                                   class="ls-ico-remove"></a>
                             </td>
                         </tr>
                     @endforeach

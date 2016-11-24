@@ -36,7 +36,7 @@
 
             <div class="ls-actions-btn">
                 <button class="ls-btn ls-btn-primary ls-ico-checkmark">Salvar</button>
-                <a href="/contas" class="ls-btn-danger ls-ico-close">Cancelar</a>
+                <a href="/contas/{{$conta->id}}" class="ls-btn-danger ls-ico-close">Cancelar</a>
             </div>
         </form>
     </div>
