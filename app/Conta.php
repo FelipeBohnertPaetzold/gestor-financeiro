@@ -42,6 +42,13 @@ class Conta extends Model
         return $this->hasMany(Despesa::class);
     }
 
+    public function pagamentosMes()
+    {
+        return $this->pagamentos()
+            ->whereMonth('data_pagamento', '=', date('m'))
+            ->whereYear('data_pagamento', '=', date('Y'));
+    }
+
     public function pagamentos()
     {
         return $this->hasMany(Pagamento::class);
