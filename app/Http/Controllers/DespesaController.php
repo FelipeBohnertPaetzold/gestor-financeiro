@@ -18,6 +18,11 @@ class DespesaController extends Controller
         return $this->service->listaTodasView();
     }
 
+    public function detalhes($id)
+    {
+        return $this->service->detalhes($id);
+    }
+
     public function filtroData(Request $request)
     {
         return $this->service->filtroData($request);

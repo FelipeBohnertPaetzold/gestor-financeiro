@@ -26,10 +26,7 @@
                             <h6 class="ls-title-4">Saldo</h6>
                         </div>
                         <div class="ls-box-body">
-                            <strong>{{number_format ( $conta->saldo , 2 , "," , "." )}}</strong>
-                        </div>
-                        <div class="ls-box-footer">
-                            <h6 class="ls-title-4">R$</h6>
+                            <strong>{{number_format ( $conta->saldo , 2 , "," , "." )}}</strong></strong><span>R$</span>
                         </div>
                     </div>
                 </div>

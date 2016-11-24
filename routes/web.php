@@ -31,6 +31,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::group(['prefix' => 'despesas'], function (){
         Route::get('/', 'DespesaController@listaTodasView');
         Route::get('/nova', 'DespesaController@criaNovaView');
+        Route::get('/{id}', 'DespesaController@detalhes');
         Route::post('/criar', 'DespesaController@store');
         Route::post('/filtro/data', 'DespesaController@filtroData');
     });

@@ -64,7 +64,7 @@ class ContaService
     public function deletarView($id)
     {
         $conta = $this->conta->find($id);
-        if(!$this->verificaPermissão($conta)) {
+        if(!$this->verificaPermissao($conta)) {
             return view('mensagens.negado');
         }
         return view('contas.delete', [
@@ -109,7 +109,7 @@ class ContaService
         }
     }
 
-    public function verificaPermissão($conta)
+    public function verificaPermissao($conta)
     {
         if ($conta->user_id == Auth::user()->id) {
             return true;

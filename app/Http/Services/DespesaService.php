@@ -39,6 +39,16 @@ class DespesaService
         ]);
     }
 
+    public function detalhes($id)
+    {
+        if(!$this->verificaPermissao($this->buscaDespesaPorId($id))) {
+            return view('mensagens.negado');
+        }
+        return view('despesas.detail', [
+            'despesa' => $this->buscaDespesaPorId($id)
+        ]);
+    }
+
     public function filtroData($request)
     {
         $inicial = \DateTime::createFromFormat('d/m/Y', $request->inicial);
@@ -74,7 +84,7 @@ class DespesaService
 
     public function store($request)
     {
-        if (!$this->contaService->verificaPermissão($this->contaService->buscaContaPorId($request->conta_id))) {
+        if (!$this->contaService->verificaPermissao($this->contaService->buscaContaPorId($request->conta_id))) {
             return view('mensagens.negado');
         }
         $request->user_id = Auth::user()->id;
@@ -117,5 +127,18 @@ class DespesaService
         return view('despesas.create', [
             'contas' => Auth::user()->contas
         ]);
+    }
+
+    public function verificaPermissao($despesa)
+    {
+        if ($despesa->user_id == Auth::user()->id) {
+            return true;
+        }
+        return false;
+    }
+
+    public function buscaDespesaPorId($id)
+    {
+        return $this->despesa->find($id);
     }
 }

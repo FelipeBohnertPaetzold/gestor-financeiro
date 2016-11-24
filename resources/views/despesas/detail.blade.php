@@ -1,0 +1,84 @@
+@extends('templates.app')
+
+@section('content')
+    <ol class="ls-breadcrumb">
+        <li><a href="/">Início</a></li>
+        <li><a href="/despesas">Despesas</a></li>
+        <li>{{$despesa->nome}}</li>
+    </ol>
+    <div class="container-fluid">
+        <h2 class="ls-title-intro">
+            <span style="font-size: 20px; color: #8c8c8c">
+                Você está vendo "Uma Despesa"!
+            </span>
+            <strong style="color: #8c8c8c; float: right"><i class="ls-ico-stats"></i> Despesas</strong>
+        </h2>
+        <div class="ls-box ls-board-box">
+            <header class="ls-info-header">
+                <h2 class="ls-title-3">{{$despesa->nome}}</h2>
+                <p class="ls-float-right ls-float-none-xs ls-small-info">Adicionado em
+                    <strong>{{date("d/m/Y h:i A", strtotime($despesa->created_at))}}</strong></p>
+            </header>
+            <div id="sending-stats" class="row">
+                <div class="col-sm-6 col-md-4">
+                    <div class="ls-box">
+                        <div class="ls-box-head">
+                            <h6 class="ls-title-4">Valor</h6>
+                        </div>
+                        <div class="ls-box-body">
+                            <strong>{{number_format ( $despesa->valor , 2 , "," , "." )}}</strong><span>R$</span>
+                        </div>
+                    </div>
+                    <div class="ls-box-footer">
+
+                    </div>
+                </div>
+                <div class="col-sm-6 col-md-4">
+                    <div class="ls-box">
+                        <div class="ls-box-head">
+                            <h6 class="ls-title-4">Status</h6>
+                        </div>
+                        <div class="ls-box-body">
+                            @if($despesa->quitada)
+                                <h2 style="font-weight: bold; color: #27ae60;">Pago</h2>
+                            @elseif(!$despesa->quitada && $despesa->data_vencimento == date('Y-m-d'))
+                                <h2 style="font-weight: bold; color: #e67e22;">Vence hoje</h2>
+                            @elseif(!$despesa->quitada && $despesa->data_vencimento < date('Y-m-d'))
+                                <h2 style="font-weight: bold; color: #c0392b;">Vencida</h2>
+                            @elseif(!$despesa->quitada && $despesa->data_vencimento > date('Y-m-d'))
+                                <h2 style="font-weight: bold; color: #2980b9;">A vencer</h2>
+                            @endif
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-md-4">
+                    <div class="ls-box">
+                        <div class="ls-box-head">
+                            <h6 class="ls-title-4">Vencimento</h6>
+                        </div>
+                        <div class="ls-box-body">
+                            <div class="col-xs-4">
+                                <strong>{{date("d", strtotime($despesa->data_vencimento))}}</strong>
+                                <small>dia</small>
+                            </div>
+                            <div class="col-xs-4">
+                                <strong>{{date("m", strtotime($despesa->data_vencimento))}}</strong>
+                                <small>mês</small>
+                            </div>
+                            <div class="col-xs-4">
+                                <strong>{{date("y", strtotime($despesa->data_vencimento))}}</strong>
+                                <small>ano</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="ls-box ls-board-box">
+            <header class="ls-info-header">
+                <h2 class="ls-title-3">Descrição</h2>
+            </header>
+            <p class="ls-no-data">{{$despesa->descricao}}</p>
+        </div>
+    </div>
+@endsection

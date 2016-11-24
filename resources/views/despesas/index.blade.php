@@ -84,7 +84,7 @@
                                 <tbody>
                                 @foreach($conta->despesasMes as $despesa)
                                     <tr>
-                                        <td><a href="/contas/{{$despesa->id}}"
+                                        <td><a href="/despesas/{{$despesa->id}}"
                                                title="Nome da despesa">{{$despesa->nome}}</a>
                                         </td>
                                         <td style="text-align: center">{{number_format ( $despesa->valor , 2 , "," , "." )}}</td>
