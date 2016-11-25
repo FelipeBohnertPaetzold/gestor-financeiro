@@ -29,7 +29,6 @@ web1:
     - mbstring
     - mcrypt
     - tokenizer
-    - gd
     - pdo_mysql
     - xcache
     - redis
@@ -46,7 +45,6 @@ web1:
     laravel[error]: 'storage/logs/laravel.log'
   before_deploy:
     - 'php artisan migrate --force --no-interaction'
-    - 'php artisan db:seed --class CriaTemas'
     - "mkdir storage/framework/views"
     - "mkdir storage/framework/sessions"
 database1:
