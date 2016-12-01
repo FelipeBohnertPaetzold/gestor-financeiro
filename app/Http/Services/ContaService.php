@@ -117,6 +117,13 @@ class ContaService
         $conta->update();
     }
 
+    public function restauraSaldo($id, $valor_a_somar)
+    {
+        $conta = $this->buscaContaPorId($id);
+        $conta->saldo_atual += $valor_a_somar;
+        $conta->update();
+    }
+
     public function verificaPermissao($conta)
     {
         if ($conta->user_id == Auth::user()->id) {

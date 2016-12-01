@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Despesa extends Model
 {
-    protected $fillable = ['id', 'nome', 'descricao', 'mensal', 'valor', 'quitada' ,'data_vencimento', 'conta_id', 'user_id'];
+    protected $fillable = ['id', 'nome', 'descricao', 'mensal', 'valor', 'quitada' , 'debito_automatico', 'data_vencimento', 'conta_id', 'user_id'];
 
     protected $table = 'despesa';
 
@@ -18,6 +18,19 @@ class Despesa extends Model
     public function despesaMes()
     {
         return $this->where('data_vencimento' , '<=', date('Y-m'))->get();
+    }
+
+    public function debitarAutomatico()
+    {
+        return $this->where('debito_automatico', '=', true)
+            ->where('quitada', '=', false)
+            ->where('data_vencimento', '=', date('Y-m-d'))
+            ->get();
+    }
+
+    public function pagamentos()
+    {
+        return $this->hasMany(Pagamento::class);
     }
 
     public function conta()

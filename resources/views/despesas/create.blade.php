@@ -66,6 +66,12 @@
                 </label>
             </fieldset>
 
+            <label class="ls-label-text col-md-12">
+                <input type="checkbox" name="debito_automatico" value="1">
+                Débito automático
+            </label>
+
+
             <div class="ls-actions-btn">
                 <button class="ls-btn ls-btn-primary ls-ico-checkmark">Salvar</button>
                 <a href="/contas" class="ls-btn-danger ls-ico-close">Cancelar</a>

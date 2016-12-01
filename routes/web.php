@@ -32,6 +32,8 @@ Route::group(['middleware' => ['auth']], function () {
         Route::get('/', 'DespesaController@listaTodasView');
         Route::get('/nova', 'DespesaController@criaNovaView');
         Route::get('/{id}', 'DespesaController@detalhes');
+        Route::get('/deletar/{id}', 'DespesaController@deletarView');
+        Route::get('/destroy/{id}', 'DespesaController@destroy');
         Route::post('/criar', 'DespesaController@store');
         Route::post('/filtro/data', 'DespesaController@filtroData');
     });

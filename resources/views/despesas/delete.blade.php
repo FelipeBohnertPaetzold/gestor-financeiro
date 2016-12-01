@@ -4,18 +4,22 @@
     <ol class="ls-breadcrumb">
         <li><a href="/">Início</a></li>
         <li><a href="/despesas">Despesas</a></li>
-        <li>{{$despesa->nome}}</li>
+        <li><a href="/despesas/{{$despesa->id}}">{{$despesa->nome}}</a></li>
+        <li>Excluir</li>
     </ol>
     <div class="container-fluid">
         <h2 class="ls-title-intro">
             <span style="font-size: 20px; color: #8c8c8c">
-                Você está vendo "Uma Despesa"!
+                Você deseja excluir a despesa "{{$despesa->nome}}"!
             </span>
             <strong style="color: #8c8c8c; float: right"><i class="ls-ico-stats"></i> Despesas</strong>
         </h2>
-        @if(!$despesa->quitada)
-            <a href="/pagamentos/pagar/{{$despesa->id}}" class="ls-btn ls-ico-circle-right">Pagar agora</a>
-        @endif
+
+        <div class="ls-actions-btn">
+            <a href="/despesas/destroy/{{$despesa->id}}" class="ls-btn-danger ls-ico-close">Excluir</a>
+            <a href="/contas" class="ls-btn ls-ico-left">Cancelar</a>
+        </div>
+
         <div class="ls-box ls-board-box">
             <header class="ls-info-header">
                 <h2 class="ls-title-3">{{$despesa->nome}}</h2>

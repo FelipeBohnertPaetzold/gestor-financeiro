@@ -49,6 +49,35 @@ class DespesaService
         ]);
     }
 
+    public function destroy($id)
+    {
+        if (!$this->verificaPermissao($this->buscaDespesaPorId($id))) {
+            return view('mensagens.negado');
+        }
+
+        $despesa = $this->buscaDespesaPorId($id);
+        $valor_a_somar = 0;
+        foreach ($despesa->pagamentos as $pagamento) {
+            $valor_a_somar += $pagamento->valor;
+            $pagamento->delete();
+        }
+
+        $this->contaService->restauraSaldo($despesa->conta_id, $valor_a_somar);
+
+        $despesa->delete();
+        return redirect('/contas')->with('message', 'Despesa removida com sucesso!');
+    }
+
+    public function deletarView($id)
+    {
+        if (!$this->verificaPermissao($this->buscaDespesaPorId($id))) {
+            return view('mensagens.negado');
+        }
+        return view('despesas.delete', [
+            'despesa' => $this->buscaDespesaPorId($id)
+        ]);
+    }
+
     public function filtroData($request)
     {
         $inicial = \DateTime::createFromFormat('d/m/Y', $request->inicial);
@@ -124,8 +153,7 @@ class DespesaService
 
     public function pagamentoDeDespesa($despesa, $valor)
     {
-        if ($despesa->valor == $valor)
-        {
+        if ($despesa->valor == $valor) {
             $despesa->quitada = true;
             $despesa->update();
         }
