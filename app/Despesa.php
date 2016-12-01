@@ -20,6 +20,14 @@ class Despesa extends Model
         return $this->where('data_vencimento' , '<=', date('Y-m'))->get();
     }
 
+    public function debitarAutomatico()
+    {
+        return $this->where('debito_automatico', '=', true)
+            ->where('quitada', '=', false)
+            ->where('data_vencimento', '=', date('Y-m-d'))
+            ->get();
+    }
+
     public function pagamentos()
     {
         return $this->hasMany(Pagamento::class);
