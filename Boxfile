@@ -24,8 +24,6 @@ build:
 
 web1:
   type: php
-  cron:
-    - * * * * * php artisan debito:automatico >> /dev/null 2>&1
   php_extensions:
     - json
     - mbstring
