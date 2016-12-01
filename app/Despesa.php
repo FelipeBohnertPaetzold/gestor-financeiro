@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Despesa extends Model
 {
-    protected $fillable = ['id', 'nome', 'descricao', 'mensal', 'valor', 'quitada' ,'data_vencimento', 'conta_id', 'user_id'];
+    protected $fillable = ['id', 'nome', 'descricao', 'mensal', 'valor', 'quitada' , 'debito_automatico', 'data_vencimento', 'conta_id', 'user_id'];
 
     protected $table = 'despesa';
 
