@@ -76,11 +76,17 @@
                     </div>
                 </div>
             </div>
-            @if($despesa->debito_automatico)
+            @if($despesa->debito_automatico && !$despesa->quitada)
                 <div class="ls-alert-info" style="margin-top: 10px;"><strong>Atenção:</strong> Essa despesa será
                     debitada automaticamente!
                 </div>
             @endif
+            @if($despesa->debito_automatico && $despesa->quitada)
+                <div class="ls-alert-info" style="margin-top: 10px;"><strong>Atenção:</strong> Essa despesa foi
+                    debitada automaticamente!
+                </div>
+            @endif
+
         </div>
         <div class="ls-box ls-board-box">
             <header class="ls-info-header">
