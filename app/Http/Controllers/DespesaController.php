@@ -23,6 +23,16 @@ class DespesaController extends Controller
         return $this->service->detalhes($id);
     }
 
+    public function deletarView($id)
+    {
+        return $this->service->deletarView($id);
+    }
+
+    public function destroy($id)
+    {
+        return $this->service->destroy($id);
+    }
+
     public function filtroData(Request $request)
     {
         return $this->service->filtroData($request);
