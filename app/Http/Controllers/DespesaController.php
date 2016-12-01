@@ -23,6 +23,11 @@ class DespesaController extends Controller
         return $this->service->detalhes($id);
     }
 
+    public function debitoAutomatico()
+    {
+        $this->service->debitoAutomatico();
+    }
+
     public function deletarView($id)
     {
         return $this->service->deletarView($id);

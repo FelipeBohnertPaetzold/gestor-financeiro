@@ -9,7 +9,9 @@
 namespace App\Http\Services;
 
 
+use App\Conta;
 use App\Despesa;
+use App\Pagamento;
 use Illuminate\Support\Facades\Auth;
 
 class DespesaService
@@ -154,6 +156,32 @@ class DespesaService
     public function pagamentoDeDespesa($despesa, $valor)
     {
         if ($despesa->valor == $valor) {
+            $despesa->quitada = true;
+            $despesa->update();
+        }
+    }
+
+    public function debitoAutomatico()
+    {
+        $despesa = new Despesa();
+
+        $data = $despesa->debitarAutomatico();
+
+        foreach ($data as $despesa) {
+            $pagamentoData['descricao'] = "Pagamento automático de " . $despesa->nome . "!";
+            $pagamentoData['valor'] = $despesa->valor;
+            $pagamentoData['conta_id'] = $despesa->conta_id;
+            $pagamentoData['data_pagamento'] = date("Y-m-d H:i:s");
+            $pagamentoData['despesa_id'] = $despesa->id;
+            $pagamentoData['user_id'] = $despesa->user_id;
+
+            $pagamento = new Pagamento();
+
+            $conta = new Conta();
+            $conta = $conta->find($despesa->conta_id);
+            $pagamento = $pagamento->create($pagamentoData);
+            $conta->saldo_atual -= $pagamento->valor;
+            $conta->update();
             $despesa->quitada = true;
             $despesa->update();
         }

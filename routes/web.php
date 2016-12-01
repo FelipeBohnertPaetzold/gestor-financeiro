@@ -58,3 +58,5 @@ Route::group(['middleware' => ['auth']], function () {
 });
 
 Auth::routes();
+
+Route::get('/despesas/debito/automatico', 'DespesaController@debitoAutomatico');
