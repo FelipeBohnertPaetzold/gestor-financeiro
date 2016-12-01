@@ -24,7 +24,7 @@ class Despesa extends Model
     {
         return $this->where('debito_automatico', '=', true)
             ->where('quitada', '=', false)
-            ->where('data_vencimento', '=', date('Y-m-d'))
+            ->where('data_vencimento', '<=', date('Y-m-d'))
             ->get();
     }
 
