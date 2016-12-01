@@ -13,7 +13,9 @@
             </span>
             <strong style="color: #8c8c8c; float: right"><i class="ls-ico-stats"></i> Despesas</strong>
         </h2>
-        <a href="/pagamentos/pagar/{{$despesa->id}}" class="ls-btn ls-ico-circle-right">Pagar agora</a>
+        @if(!$despesa->quitada)
+            <a href="/pagamentos/pagar/{{$despesa->id}}" class="ls-btn ls-ico-circle-right">Pagar agora</a>
+        @endif
         <div class="ls-box ls-board-box">
             <header class="ls-info-header">
                 <h2 class="ls-title-3">{{$despesa->nome}}</h2>
@@ -43,7 +45,7 @@
                             @if($despesa->quitada)
                                 <h2 class="quitada">Pago</h2>
                             @elseif(!$despesa->quitada && $despesa->data_vencimento == date('Y-m-d'))
-                                <h2  class="vence-hoje">Vence hoje</h2>
+                                <h2 class="vence-hoje">Vence hoje</h2>
                             @elseif(!$despesa->quitada && $despesa->data_vencimento < date('Y-m-d'))
                                 <h2 class="vencido">Vencida</h2>
                             @elseif(!$despesa->quitada && $despesa->data_vencimento > date('Y-m-d'))
@@ -74,6 +76,11 @@
                     </div>
                 </div>
             </div>
+            @if($despesa->debito_automatico)
+                <div class="ls-alert-info" style="margin-top: 10px;"><strong>Atenção:</strong> Essa despesa será
+                    debitada automaticamente!
+                </div>
+            @endif
         </div>
         <div class="ls-box ls-board-box">
             <header class="ls-info-header">
@@ -81,5 +88,39 @@
             </header>
             <p class="ls-no-data">{{$despesa->descricao}}</p>
         </div>
+
+        @if($despesa->pagamentos->count() > 0)
+            <div data-ls-module="collapse" data-target="#1" class="ls-collapse ">
+                <a href="#" class="ls-collapse-header">
+                    <h3 class="ls-collapse-title">Pagamentos</h3>
+                </a>
+                <div class="ls-collapse-body" id="1">
+                    <table class="ls-table ls-table-striped ls-table-bordered">
+                        <thead>
+                        <tr>
+                            <th>Descrição</th>
+                            <th style="text-align: center">Valor</th>
+                            <th style="text-align: center">Data de pagamento</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        @foreach($despesa->pagamentos as $pagamento)
+                            <tr>
+                                <td><a href="/pagamentos/{{$pagamento->id}}"
+                                       title="Descrição ome do pagamento">{{$pagamento->descricao}}</a>
+                                </td>
+                                <td class="vencido" style="text-align: center"><span
+                                            style="font-size: 12px;">R$ </span>{{number_format ( $pagamento->valor , 2 , "," , "." )}}
+                                </td>
+                                <td style="text-align: center">
+                                    <strong>{{date("d/m/Y h:i:s A", strtotime($pagamento->data_pagamento))}}</strong>
+                                </td>
+                            </tr>
+                        @endforeach
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        @endif
     </div>
 @endsection

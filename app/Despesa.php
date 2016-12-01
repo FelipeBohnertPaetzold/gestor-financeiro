@@ -20,6 +20,11 @@ class Despesa extends Model
         return $this->where('data_vencimento' , '<=', date('Y-m'))->get();
     }
 
+    public function pagamentos()
+    {
+        return $this->hasMany(Pagamento::class);
+    }
+
     public function conta()
     {
         return $this->belongsTo(Conta::class, 'conta_id');

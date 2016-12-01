@@ -131,6 +131,7 @@
                                 <input type="datetime-local" name="data_pagamento" value="{{date("Y-m-d\TH:i:s")}}" required>
                             </label>
                         </fieldset>
+                        <input type="hidden" name="despesa_id" value="{{$despesa->id}}">
                         <div class="ls-actions-btn">
                             <button class="ls-btn ls-btn-primary ls-ico-checkmark">Pagar</button>
                             <a href="/despesas/{{$despesa->id}}" class="ls-btn-danger ls-ico-close">Cancelar</a>
@@ -168,6 +169,7 @@
                                 <input type="datetime-local" name="data_pagamento" value="{{date("Y-m-d\TH:i:s")}}" required>
                             </label>
                         </fieldset>
+                        <input type="hidden" name="despesa_id" value="{{$despesa->id}}">
                         <div class="ls-actions-btn">
                             <button class="ls-btn ls-btn-primary ls-ico-checkmark">Pagar</button>
                             <a href="/despesas/{{$despesa->id}}" class="ls-btn-danger ls-ico-close">Cancelar</a>
