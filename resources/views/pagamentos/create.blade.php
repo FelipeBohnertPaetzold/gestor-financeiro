@@ -141,17 +141,14 @@
                 <div id="laps" class="ls-tab-content">
                     <form action="/pagamentos/criar" class="ls-form ls-form-horizontal row" method="post">
                         {{ csrf_field() }}
-                        <input type="hidden" name="valor"
-                               value="{{$despesa->valor}}">
                         <input type="hidden" name="conta_id" value="{{$despesa->conta->id}}">
                         <input type="hidden" name="despesa_id" value="{{$despesa->id}}">
                         <fieldset>
                             <label class="ls-label col-md-6">
                                 <b class="ls-label-text">Valor</b>
                                 <p class="ls-label-info">Valor do pagamento</p>
-                                <input type="text" name="valor" onKeyPress="return(MascaraMoeda(this,'','.',event))"
-                                       value="{{number_format ( $despesa->valor , 2 , ".", "")}}"
-                                       required>
+                                <input type="text" name="valor" min="1" max="{{$despesa->valor - 1}}" onKeyPress="return(MascaraMoeda(this,'','.',event))"
+                                       value="{{number_format ( $despesa->valor - 1 , 2 , ".", "")}}" required>
                             </label>
                             <label class="ls-label col-md-6">
                                 <b class="ls-label-text">Conta</b>
@@ -167,6 +164,16 @@
                                 <b class="ls-label-text">Data de Pagamento</b>
                                 <p class="ls-label-info">Informe a data do pagamento</p>
                                 <input type="datetime-local" name="data_pagamento" value="{{date("Y-m-d\TH:i:s")}}" required>
+                            </label>
+                            <hr/>
+                            <label class="ls-label col-md-6">
+                                <b class="ls-label-text">Vencimento da conta resiliente</b>
+                                <p class="ls-label-info">Informe a data do vencimento</p>
+                                <input type="date" name="vencimento_proxima" required>
+                            </label>
+                            <label class="ls-label-text col-md-6" style="margin-top: 30px;">
+                                <input type="checkbox" name="debito_automatico_proxima" value="1">
+                                Débito automático
                             </label>
                         </fieldset>
                         <input type="hidden" name="despesa_id" value="{{$despesa->id}}">

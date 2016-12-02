@@ -6,9 +6,31 @@ use Illuminate\Database\Eloquent\Model;
 
 class Despesa extends Model
 {
-    protected $fillable = ['id', 'nome', 'descricao', 'mensal', 'valor', 'quitada' , 'debito_automatico', 'data_vencimento', 'conta_id', 'user_id'];
+    protected $fillable = [
+        'id',
+        'nome',
+        'descricao',
+        'mensal',
+        'valor',
+        'quitada' ,
+        'debito_automatico',
+        'data_vencimento',
+        'conta_id',
+        'user_id',
+        'despesa_id'
+    ];
 
     protected $table = 'despesa';
+
+    public function despesa()
+    {
+        return $this->belongsTo(Despesa::class, 'despesa_id');
+    }
+
+    public function despesas()
+    {
+        return $this->hasMany(Despesa::class);
+    }
 
     public function user()
     {

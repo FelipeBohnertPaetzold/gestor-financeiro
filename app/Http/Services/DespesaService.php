@@ -65,7 +65,9 @@ class DespesaService
         }
 
         $this->contaService->restauraSaldo($despesa->conta_id, $valor_a_somar);
-
+        foreach ($despesa->despesas as $des) {
+            $des->delete();
+        }
         $despesa->delete();
         return redirect('/contas')->with('message', 'Despesa removida com sucesso!');
     }
@@ -155,10 +157,8 @@ class DespesaService
 
     public function pagamentoDeDespesa($despesa, $valor)
     {
-        if ($despesa->valor == $valor) {
-            $despesa->quitada = true;
-            $despesa->update();
-        }
+        $despesa->quitada = true;
+        $despesa->update();
     }
 
     public function debitoAutomatico()
