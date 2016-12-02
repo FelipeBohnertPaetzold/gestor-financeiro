@@ -17,6 +17,7 @@ class PagamentoService
 {
     public function __construct(DespesaService $despesaService, ContaService $contaService)
     {
+        $this->nav = "despesas";
         $this->conta = new Conta();
         $this->pagamento = new Pagamento();
         $this->despesaService = $despesaService;
@@ -30,7 +31,8 @@ class PagamentoService
         }
 
         return view('pagamentos.create', [
-            'despesa' => $this->despesaService->buscaDespesaPorId($despesaId)
+            'despesa' => $this->despesaService->buscaDespesaPorId($despesaId),
+            'nav' => $this->nav
         ]);
     }
 

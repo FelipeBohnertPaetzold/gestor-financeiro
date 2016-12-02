@@ -18,6 +18,7 @@ class ContaService
     public function __construct()
     {
         $this->conta = new Conta();
+        $this->nav = "contas";
     }
 
     public function listaTodasView()
@@ -30,7 +31,8 @@ class ContaService
         $total = number_format($value, 2, ",", ".");
         return view('contas.index', [
             'data' => $data,
-            'total' => $total
+            'total' => $total,
+            'nav' => $this->nav
         ]);
     }
 
@@ -41,13 +43,16 @@ class ContaService
             return view('mensagens.negado');
         }
         return view('contas.detail', [
-            'conta' => $conta
+            'conta' => $conta,
+            'nav' => $this->nav
         ]);
     }
 
     public function criaNovaView()
     {
-        return view('contas.create');
+        return view('contas.create', [
+            'nav' => $this->nav
+        ]);
     }
 
     public function editarView($id)
@@ -57,7 +62,8 @@ class ContaService
             return view('mensagens.negado');
         }
         return view('contas.edit', [
-            'conta' => $conta
+            'conta' => $conta,
+            'nav' => $this->nav
         ]);
     }
 
@@ -68,7 +74,8 @@ class ContaService
             return view('mensagens.negado');
         }
         return view('contas.delete', [
-            'conta' => $conta
+            'conta' => $conta,
+            'nav' => $this->nav
         ]);
     }
 

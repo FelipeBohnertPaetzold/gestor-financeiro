@@ -18,6 +18,7 @@ class DespesaService
 {
     public function __construct(ContaService $contaService)
     {
+        $this->nav = "despesas";
         $this->despesa = new Despesa();
         $this->contaService = $contaService;
     }
@@ -37,7 +38,8 @@ class DespesaService
         return view('despesas.index', [
             'data' => $data,
             'total' => $total,
-            'despesas' => $despesas
+            'despesas' => $despesas,
+            'nav' => $this->nav
         ]);
     }
 
@@ -47,7 +49,8 @@ class DespesaService
             return view('mensagens.negado');
         }
         return view('despesas.detail', [
-            'despesa' => $this->buscaDespesaPorId($id)
+            'despesa' => $this->buscaDespesaPorId($id),
+            'nav' => $this->nav
         ]);
     }
 
@@ -78,7 +81,8 @@ class DespesaService
             return view('mensagens.negado');
         }
         return view('despesas.delete', [
-            'despesa' => $this->buscaDespesaPorId($id)
+            'despesa' => $this->buscaDespesaPorId($id),
+            'nav' => $this->nav
         ]);
     }
 
@@ -111,7 +115,8 @@ class DespesaService
 
         return view('despesas.filtro_data', [
             'data' => $data,
-            'total' => $total
+            'total' => $total,
+            'nav' => $this->nav
         ]);
     }
 
@@ -190,7 +195,8 @@ class DespesaService
     public function criaNovaView()
     {
         return view('despesas.create', [
-            'contas' => Auth::user()->contas
+            'contas' => Auth::user()->contas,
+            'nav' => $this->nav
         ]);
     }
 

@@ -17,6 +17,11 @@ class DepositoController extends Controller
         return $this->service->listaTodosView();
     }
 
+    public function detalhes($id)
+    {
+        return $this->service->detalhes($id);
+    }
+
     public function criarNovoView($conta_id)
     {
         return $this->service->criarNovoView($conta_id);

@@ -16,13 +16,15 @@ class TemaService
 {
     public function __construct()
     {
+        $this->nav = "configuracoes";
         $this->tema = new Tema();
     }
 
     public function trocarTemaView()
     {
         return view('configuracoes.aparencia', [
-            'data' => $this->tema->all()
+            'data' => $this->tema->all(),
+            'nav' => $this->nav
         ]);
     }
 

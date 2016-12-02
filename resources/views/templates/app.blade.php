@@ -56,7 +56,7 @@
         <nav class="ls-menu">
             <ul>
                 <li><a href="/dashboard" class="ls-ico-dashboard" title="Dashboard">Dashboard</a></li>
-                <li>
+                <li @if($nav == "contas")class="ls-active"@endif>
                     <a href="#" class="ls-ico-stats" title="Contas">Contas</a>
                     <ul>
                         <li><a href="/contas/nova">Nova <i style="float: right" class="ls-ico-plus"></i></a></li>
@@ -64,10 +64,10 @@
                                                         class="ls-ico-list"></i></a></li>
                     </ul>
                 </li>
-                <li><a href="/depositos" class="ls-ico-plus" title="Depositos">Depósitos</a></li>
-                <li><a href="/despesas" class="ls-ico-minus" title="Despesas">Despesas</a></li>
-                <li><a href="#" class="ls-ico-calendar" title="Agenda">Agenda</a></li>
-                <li>
+                <li @if($nav == "depositos") class="ls-active" @endif><a href="/depositos" class="ls-ico-plus" title="Depositos">Depósitos</a></li>
+                <li @if($nav == "despesas") class="ls-active" @endif><a href="/despesas" class="ls-ico-minus" title="Despesas">Despesas</a></li>
+                <li @if($nav == "agenda") class="ls-active" @endif><a href="#" class="ls-ico-calendar" title="Agenda">Agenda</a></li>
+                <li @if($nav == "configuracoes") class="ls-active" @endif>
                     <a href="#" class="ls-ico-cog" title="Configurações">Configurações</a>
                     <ul>
                         <li><a href="/users/temas">Aparência <i style="float: right"

@@ -17,6 +17,7 @@ class DepositoService
 {
     public function __construct(ContaService $contaService)
     {
+        $this->nav = 'depositos';
         $this->deposito = new Deposito();
         $this->conta = new Conta();
         $this->contaService = $contaService;
@@ -30,24 +31,39 @@ class DepositoService
         }
         return view('depositos.index', [
             'data' => $this->deposito->byMes(Auth::user()->id),
-            'total' => $total
+            'total' => $total,
+            'nav' => $this->nav
+        ]);
+    }
+
+    public function detalhes($id)
+    {
+        $deposito = $this->deposito->find(id);
+        if($this->verificaPermissaoDeposito($deposito)) {
+            return view('mensagens.negado');
+        }
+
+        return view('depositos.detail', [
+            'deposito' => $deposito,
+            'nav' => $this->nav
         ]);
     }
 
     public function criarNovoView($conta_id)
     {
-        $conta = $this->buscaDespesaPorId($conta_id);
+        $conta = $this->buscaContaPorId($conta_id);
         if (!$this->verificaPermissao($conta)) {
             return view('mensagens.negado');
         }
         return view('depositos.create', [
-            'conta' => $conta
+            'conta' => $conta,
+            'nav' => $this->nav
         ]);
     }
 
     public function store($request)
     {
-        $conta = $this->buscaDespesaPorId($request->conta_id);
+        $conta = $this->buscaContaPorId($request->conta_id);
         if (!$this->verificaPermissao($conta)) {
             return view('mensagens.negado');
         }
@@ -60,6 +76,15 @@ class DepositoService
         return redirect('/depositos')->with('message', 'Deposito efetuado com sucesso!');
     }
 
+    public function verificaPermissaoDeposito($deposito)
+    {
+        if($deposito->user_id == Auth::user()->id) {
+            return true;
+        }
+
+        return false;
+    }
+
     public function verificaPermissao($conta)
     {
         if ($conta->user_id == Auth::user()->id) {
@@ -68,7 +93,7 @@ class DepositoService
         return false;
     }
 
-    public function buscaDespesaPorId($id)
+    public function buscaContaPorId($id)
     {
         return $this->conta->find($id);
     }
