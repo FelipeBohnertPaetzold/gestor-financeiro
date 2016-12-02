@@ -47,7 +47,7 @@
     <div class="ls-sidebar-inner">
         <nav class="ls-menu">
             <ul>
-                <li @if($nav == "dashboard") class="ls-active" @endif><a href="/dashboard" class="ls-ico-dashboard" title="Dashboard">Dashboard</a></li>
+                <li @if($nav == "dashboard") class="ls-active" @endif><a href="/" class="ls-ico-dashboard" title="Dashboard">Dashboard</a></li>
                 <li @if($nav == "contas")class="ls-active"@endif>
                     <a href="#" class="ls-ico-stats" title="Contas">Contas</a>
                     <ul>

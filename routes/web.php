@@ -50,17 +50,10 @@ Route::group(['middleware' => ['auth']], function () {
         Route::post('/criar', 'PagamentoController@store');
     });
 
-    Route::get('/home', function () {
-        return view('home.home', ['nav' => 'dashboard']);
-    });
-    Route::get('/', function () {
-        return view('home.home', ['nav' => 'dashboard']);
-    });
+    Route::get('/', 'DashboardController@viewDashboard');
+    Route::get('/home', 'DashboardController@viewDashboard');
     Route::get('/logout', 'Auth\LoginController@logout');
 
-    Route::get('/dashboard', function () {
-        return view('home.home', ['nav' => 'dashboard']);
-    });
 
 
 });
