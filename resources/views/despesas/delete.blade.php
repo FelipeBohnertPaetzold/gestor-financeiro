@@ -12,7 +12,7 @@
             <span style="font-size: 20px; color: #8c8c8c">
                 Você deseja excluir a despesa "{{$despesa->nome}}"!
             </span>
-            <strong style="color: #8c8c8c; float: right"><i class="ls-ico-stats"></i> Despesas</strong>
+            <strong style="color: #8c8c8c; float: right"><i class="ls-ico-minus"></i> Despesas</strong>
         </h2>
 
         <div class="ls-actions-btn">

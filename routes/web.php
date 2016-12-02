@@ -12,12 +12,12 @@
 */
 Route::group(['middleware' => ['auth']], function () {
 
-    Route::group(['prefix' => 'users'], function (){
+    Route::group(['prefix' => 'users'], function () {
         Route::get('/temas', 'TemaController@trocarTemaView');
         Route::post('/temas/atualizar', 'TemaController@update');
     });
 
-    Route::group(['prefix' => 'contas'], function(){
+    Route::group(['prefix' => 'contas'], function () {
         Route::get('/', 'ContaController@listaTodasView');
         Route::get('/nova', 'ContaController@criaNovaView');
         Route::get('/editar/{id}', 'ContaController@editarView');
@@ -28,7 +28,7 @@ Route::group(['middleware' => ['auth']], function () {
         Route::post('/update', 'ContaController@update');
     });
 
-    Route::group(['prefix' => 'despesas'], function (){
+    Route::group(['prefix' => 'despesas'], function () {
         Route::get('/', 'DespesaController@listaTodasView');
         Route::get('/nova', 'DespesaController@criaNovaView');
         Route::get('/{id}', 'DespesaController@detalhes');
@@ -38,7 +38,13 @@ Route::group(['middleware' => ['auth']], function () {
         Route::post('/filtro/data', 'DespesaController@filtroData');
     });
 
-    Route::group(['prefix' => 'pagamentos'], function (){
+    Route::group(['prefix' => 'depositos'], function () {
+        Route::get('/', 'DepositoController@listaTodosView');
+        Route::get('/novo/{conta_id}', 'DepositoController@criarNovoView');
+        Route::post('/criar', 'DepositoController@store');
+    });
+
+    Route::group(['prefix' => 'pagamentos'], function () {
         Route::get('/pagar/{despesaId}', 'PagamentoController@pagarView');
         Route::post('/criar', 'PagamentoController@store');
     });

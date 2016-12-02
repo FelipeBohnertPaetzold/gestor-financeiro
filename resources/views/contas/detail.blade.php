@@ -13,6 +13,7 @@
             </span>
             <strong style="color: #8c8c8c; float: right"><i class="ls-ico-stats"></i> Contas</strong>
         </h2>
+        <a href="/depositos/novo/{{$conta->id}}" class="ls-btn-primary ls-ico-plus">Novo Depósito</a>
         <div class="ls-box ls-board-box">
             <header class="ls-info-header">
                 <h2 class="ls-title-3">{{$conta->nome}} <a href="/contas/editar/{{$conta->id}}"
@@ -67,7 +68,7 @@
                 </div>
             </div>
         </div>
-        <div data-ls-module="collapse" data-target="#0" class="ls-collapse ls-collapse-opened">
+        <div data-ls-module="collapse" data-target="#0" class="ls-collapse">
             <a href="#" class="ls-collapse-header">
                 <h3 class="ls-collapse-title">Despesas do mês ({{count($conta->despesasMes)}})</h3>
             </a>
@@ -90,7 +91,8 @@
                             <td class="vencido" style="text-align: center"><span
                                         style="font-size: 12px;">R$ </span>{{number_format ( $despesa->valor , 2 , "," , "." )}}
                             </td>
-                            <td style="text-align: center"><strong>{{date("d/m/Y", strtotime($despesa->data_vencimento))}}</strong></td>
+                            <td style="text-align: center">
+                                <strong>{{date("d/m/Y", strtotime($despesa->data_vencimento))}}</strong></td>
                             <td style="text-align: center">
                                 @if($despesa->quitada)
                                     <span class="quitada">Pago</span>
@@ -106,6 +108,39 @@
                     @endforeach
                     </tbody>
                 </table>
+            </div>
+        </div>
+
+        <div data-ls-module="collapse" data-target="#3" class="ls-collapse ">
+            <a href="#" class="ls-collapse-header">
+                <h3 class="ls-collapse-title">Depósitos do mes ({{count($conta->depositosMes)}})</h3>
+            </a>
+            <div class="ls-collapse-body" id="3">
+                <div class="ls-box">
+                    <table class="ls-table ls-table-striped ls-table-bordered">
+                        <thead>
+                        <tr>
+                            <th style="text-align: center">Valor</th>
+                            <th style="text-align: center">Criação</th>
+                            <th style="text-align: center">Conta</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        @foreach($conta->depositosMes as $deposito)
+                            <tr>
+                                <td class="quitada"
+                                    style="text-align: center"><span
+                                            style="font-size: 12px;"></span><a
+                                            href="/depositos/{{$deposito->id}}">R$ {{number_format ( $deposito->valor , 2 , "," , "." )}}</a>
+                                </td>
+                                <td style="text-align: center">{{date("d/m/Y - h:i:s A", strtotime($deposito->created_at))}}</td>
+                                <td class="ls-color-theme" style="text-align: center">
+                                    <a href="/contas/{{$deposito->conta_id}}"><strong>{{$deposito->conta->nome}}</strong></td></a>
+                            </tr>
+                        @endforeach
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
 

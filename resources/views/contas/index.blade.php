@@ -17,7 +17,7 @@
             <span>Saldo total <h3><strong color="">{{$total}}</strong></h3></span>
         </div>
         <div class="ls-box">
-            <table class="ls-table ls-table-striped">
+            <table class="ls-table ls-table-striped ls-table-bordered">
                 <thead>
                 <tr>
                     <th>Nome</th>

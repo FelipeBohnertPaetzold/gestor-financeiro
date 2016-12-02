@@ -10,7 +10,7 @@
             <span style="font-size: 20px; color: #8c8c8c">
                 Você está vendo "Suas Despesas Filtradas"!
             </span>
-            <strong style="color: #8c8c8c; float: right"><i class="ls-ico-stats"></i> Despesas</strong>
+            <strong style="color: #8c8c8c; float: right"><i class="ls-ico-minus"></i> Despesas</strong>
         </h2>
 
         <a style="margin-bottom: 10px;" href="/despesas/nova" class="ls-btn-primary ls-ico-plus">Adicionar despesa</a>

@@ -29,6 +29,18 @@ class Conta extends Model
             ->whereYear('data_vencimento', '=', date('Y'));
     }
 
+    public function depositos()
+    {
+        return $this->hasMany(Deposito::class);
+    }
+
+    public function depositosMes()
+    {
+        return $this->depositos()
+            ->whereMonth('created_at', '=', date('m'))
+            ->whereYear('created_at', '=', date('Y'));
+    }
+
     public function despesasNaoQuitadasMes()
     {
         return $this->despesas()

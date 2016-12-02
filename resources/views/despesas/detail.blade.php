@@ -11,7 +11,7 @@
             <span style="font-size: 20px; color: #8c8c8c">
                 Você está vendo "Uma Despesa"!
             </span>
-            <strong style="color: #8c8c8c; float: right"><i class="ls-ico-stats"></i> Despesas</strong>
+            <strong style="color: #8c8c8c; float: right"><i class="ls-ico-minus"></i> Despesas</strong>
         </h2>
         @if(!$despesa->quitada)
             <a href="/pagamentos/pagar/{{$despesa->id}}" class="ls-btn ls-ico-circle-right">Pagar agora</a>
