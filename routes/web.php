@@ -62,6 +62,7 @@ Route::group(['middleware' => ['auth']], function () {
         return view('home.home', ['nav' => 'dashboard']);
     });
 
+
 });
 
 Auth::routes();
