@@ -51,15 +51,15 @@ Route::group(['middleware' => ['auth']], function () {
     });
 
     Route::get('/home', function () {
-        return view('home.home');
+        return view('home.home', ['nav' => 'dashboard']);
     });
     Route::get('/', function () {
-        return view('home.home');
+        return view('home.home', ['nav' => 'dashboard']);
     });
     Route::get('/logout', 'Auth\LoginController@logout');
 
     Route::get('/dashboard', function () {
-        return view('home.home');
+        return view('home.home', ['nav' => 'dashboard']);
     });
 
 });
