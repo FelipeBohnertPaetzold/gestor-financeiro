@@ -16,12 +16,65 @@
         @if(!$despesa->quitada)
             <a href="/pagamentos/pagar/{{$despesa->id}}" class="ls-btn ls-ico-circle-right">Pagar agora</a>
         @endif
+
+        @if($despesa->despesas->count() > 0)
+            <div data-ls-module="collapse" data-target="#0" class="ls-collapse">
+                <a href="#" class="ls-collapse-header">
+                    <h3 class="ls-collapse-title">Despesas filhas</h3>
+                </a>
+                <div class="ls-collapse-body" id="0">
+                    <table class="ls-table ls-table-striped ls-table-bordered">
+                        <thead>
+                        <tr>
+                            <th>Nome</th>
+                            <th style="text-align: center">Valor</th>
+                            <th style="text-align: center">Vencimento</th>
+                            <th style="text-align: center">Status</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        @foreach($despesa->despesas as $despesaFilha)
+                            <tr>
+                                <td><a href="/despesas/{{$despesaFilha->id}}"
+                                       title="Nome da despesa">{{$despesaFilha->nome}}</a>
+                                </td>
+                                <td class="vencido" style="text-align: center"><span
+                                            style="font-size: 12px;">R$ </span>{{number_format ( $despesaFilha->valor , 2 , "," , "." )}}
+                                </td>
+                                <td style="text-align: center">
+                                    <strong>{{date("d/m/Y", strtotime($despesaFilha->data_vencimento))}}</strong></td>
+                                <td style="text-align: center">
+                                    @if($despesaFilha->quitada)
+                                        <span class="quitada">Pago</span>
+                                    @elseif(date('Y-m-d', strtotime($despesaFilha->data_vencimento)) < date('Y-m-d'))
+                                        <span class="vencido">Vencido</span>
+                                    @elseif(date('Y-m-d', strtotime($despesaFilha->data_vencimento)) == date('Y-m-d'))
+                                        <span class="vence-hoje">Vence hoje</span>
+                                    @elseif(date('Y-m-d', strtotime($despesaFilha->data_vencimento)) > date('Y-m-d'))
+                                        <span class="a-vencer">A vencer</span>
+                                    @endif
+                                </td>
+                            </tr>
+                        @endforeach
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        @endif
+
         <div class="ls-box ls-board-box">
             <header class="ls-info-header">
                 <h2 class="ls-title-3">{{$despesa->nome}}</h2>
                 <p class="ls-float-right ls-float-none-xs ls-small-info">Adicionado em
                     <strong>{{date("d/m/Y h:i A", strtotime($despesa->created_at))}}</strong></p>
             </header>
+            @if($despesa->despesa != null)
+                <div class="ls-alert-warning ls-dismissable">
+                    <span data-ls-module="dismiss" class="ls-dismiss">&times;</span>
+                    <strong>Filha de:</strong> <a
+                            href="/despesas/{{$despesa->despesa->id}}"> {{$despesa->despesa->nome}}</a>
+                </div>
+            @endif
             <div id="sending-stats" class="row">
                 <div class="col-sm-6 col-md-4">
                     <div class="ls-box">
@@ -96,7 +149,7 @@
         </div>
 
         @if($despesa->pagamentos->count() > 0)
-            <div data-ls-module="collapse" data-target="#1" class="ls-collapse ">
+            <div style="margin-top: 10px;" data-ls-module="collapse" data-target="#1" class="ls-collapse ">
                 <a href="#" class="ls-collapse-header">
                     <h3 class="ls-collapse-title">Pagamentos</h3>
                 </a>
