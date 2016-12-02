@@ -37,6 +37,14 @@ class Despesa extends Model
         return $this->belongsTo(User::class, 'user_id');
     }
 
+    public function despesaMesByUserId($user_id)
+    {
+        return $this->where('user_id', '=', $user_id)
+            ->whereYear('data_vencimento' , '=', date('Y'))
+            ->whereMonth('data_vencimento', '=', date('m'))
+            ->get();
+    }
+
     public function despesaMes()
     {
         return $this->where('data_vencimento' , '<=', date('Y-m'))->get();
