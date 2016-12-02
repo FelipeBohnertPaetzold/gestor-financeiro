@@ -45,6 +45,7 @@ web1:
     laravel[error]: 'storage/logs/laravel.log'
   before_deploy:
     - 'php artisan migrate --force --no-interaction'
+    - 'php artisan db:seed --class CriaTemas --force --no-interaction'
     - "mkdir storage/framework/views"
     - "mkdir storage/framework/sessions"
 database1:
