@@ -37,6 +37,9 @@
                                         @if($conta->saldo_atual >= 0)
                                             <strong><span
                                                         class="quitada" style="font-size: 30px">R$ {{number_format ( $conta->saldo_atual , 2 , "," , "." )}}</span></strong>
+                                        @else
+                                            <strong><span
+                                                        class="vencido" style="font-size: 30px">R$ {{number_format ( $conta->saldo_atual , 2 , "," , "." )}}</span></strong>
                                         @endif
                                         <small>Saldo</small>
                                     </div>
