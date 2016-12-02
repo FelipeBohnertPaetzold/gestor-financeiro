@@ -13,10 +13,11 @@
             <strong style="color: #8c8c8c; float: right"><i class="ls-ico-plus"></i> Depósitos</strong>
         </h2>
 
-        <div style="float: right; margin-right: 20px; margin-top: 20px;">
-            <span>Total <h3><strong color="">R$ {{number_format ( $total , 2 , "," , "." )}}</strong></h3></span>
-        </div>
+
         @if($data->count() > 0)
+            <div style="float: right; margin-right: 20px; margin-top: 20px;">
+                <span>Total <h3><strong color="">R$ {{number_format ( $total , 2 , "," , "." )}}</strong></h3></span>
+            </div>
             <div class="ls-box">
                 <h1 class="ls-title-2 ls-color-theme">Depósitos do Mês</h1>
                 <table class="ls-table ls-table-striped ls-table-bordered">
