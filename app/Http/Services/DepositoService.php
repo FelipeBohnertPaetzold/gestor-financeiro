@@ -17,7 +17,7 @@ class DepositoService
 {
     public function __construct(ContaService $contaService)
     {
-        $this->nav = 'depositos';
+        $this->nav = "depositos";
         $this->deposito = new Deposito();
         $this->conta = new Conta();
         $this->contaService = $contaService;
@@ -38,9 +38,11 @@ class DepositoService
 
     public function detalhes($id)
     {
-        $deposito = $this->deposito->find(id);
-        if($this->verificaPermissaoDeposito($deposito)) {
-            return view('mensagens.negado');
+        $deposito = $this->deposito->find($id);
+        if(!$this->verificaPermissaoDeposito($deposito)) {
+            return view('mensagens.negado', [
+                'nav' => 'negado'
+            ]);
         }
 
         return view('depositos.detail', [
@@ -53,7 +55,9 @@ class DepositoService
     {
         $conta = $this->buscaContaPorId($conta_id);
         if (!$this->verificaPermissao($conta)) {
-            return view('mensagens.negado');
+            return view('mensagens.negado', [
+                'nav' => 'negado'
+            ]);
         }
         return view('depositos.create', [
             'conta' => $conta,
@@ -65,7 +69,9 @@ class DepositoService
     {
         $conta = $this->buscaContaPorId($request->conta_id);
         if (!$this->verificaPermissao($conta)) {
-            return view('mensagens.negado');
+            return view('mensagens.negado', [
+                'nav' => 'negado'
+            ]);
         }
         $data = $request->all();
         $data['user_id'] = Auth::user()->id;

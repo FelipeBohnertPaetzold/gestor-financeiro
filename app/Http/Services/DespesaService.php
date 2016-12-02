@@ -46,7 +46,9 @@ class DespesaService
     public function detalhes($id)
     {
         if (!$this->verificaPermissao($this->buscaDespesaPorId($id))) {
-            return view('mensagens.negado');
+            return view('mensagens.negado', [
+                'nav' => 'negado'
+            ]);
         }
         return view('despesas.detail', [
             'despesa' => $this->buscaDespesaPorId($id),
@@ -57,7 +59,9 @@ class DespesaService
     public function destroy($id)
     {
         if (!$this->verificaPermissao($this->buscaDespesaPorId($id))) {
-            return view('mensagens.negado');
+            return view('mensagens.negado', [
+                'nav' => 'negado'
+            ]);
         }
 
         $despesa = $this->buscaDespesaPorId($id);
@@ -78,7 +82,9 @@ class DespesaService
     public function deletarView($id)
     {
         if (!$this->verificaPermissao($this->buscaDespesaPorId($id))) {
-            return view('mensagens.negado');
+            return view('mensagens.negado', [
+                'nav' => 'negado'
+            ]);
         }
         return view('despesas.delete', [
             'despesa' => $this->buscaDespesaPorId($id),
@@ -123,7 +129,9 @@ class DespesaService
     public function store($request)
     {
         if (!$this->contaService->verificaPermissao($this->contaService->buscaContaPorId($request->conta_id))) {
-            return view('mensagens.negado');
+            return view('mensagens.negado', [
+                'nav' => 'negado'
+            ]);
         }
         $request->user_id = Auth::user()->id;
         $vencimento = \DateTime::createFromFormat('d/m/Y', $request->data_vencimento);

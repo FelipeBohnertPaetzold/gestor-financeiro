@@ -27,7 +27,9 @@ class PagamentoService
     public function pagarView($despesaId)
     {
         if (!$this->despesaService->verificaPermissao($this->despesaService->buscaDespesaPorId($despesaId))) {
-            return view('mensagens.negado');
+            return view('mensagens.negado', [
+                'nav' => 'negado'
+            ]);
         }
 
         return view('pagamentos.create', [
@@ -40,7 +42,9 @@ class PagamentoService
     {
         $despesa = $this->despesaService->buscaDespesaPorId($request->despesa_id);
         if (!$this->despesaService->verificaPermissao($despesa)) {
-            return view('mensagens.negado');
+            return view('mensagens.negado', [
+                'nav' => 'negado'
+            ]);
         }
 
         if($request->valor < $despesa->valor) {

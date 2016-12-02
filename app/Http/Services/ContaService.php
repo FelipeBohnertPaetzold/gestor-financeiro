@@ -40,7 +40,9 @@ class ContaService
     {
         $conta = $this->conta->find($id);
         if (!$this->verificaPermissao($conta)) {
-            return view('mensagens.negado');
+            return view('mensagens.negado', [
+                'nav' => 'negado'
+            ]);
         }
         return view('contas.detail', [
             'conta' => $conta,
@@ -59,7 +61,9 @@ class ContaService
     {
         $conta = $this->conta->find($id);
         if (!$this->verificaPermissao($conta)) {
-            return view('mensagens.negado');
+            return view('mensagens.negado', [
+                'nav' => 'negado'
+            ]);
         }
         return view('contas.edit', [
             'conta' => $conta,
@@ -71,7 +75,9 @@ class ContaService
     {
         $conta = $this->conta->find($id);
         if(!$this->verificaPermissao($conta)) {
-            return view('mensagens.negado');
+            return view('mensagens.negado', [
+                'nav' => 'negado'
+            ]);
         }
         return view('contas.delete', [
             'conta' => $conta,
@@ -96,7 +102,9 @@ class ContaService
         $data['updated_at'] = date('Y-m-d H:i:s');
         $conta = $this->conta->find($request->id);
         if (!$this->verificaPermissao($conta)) {
-            return view('mensagens.negado');
+            return view('mensagens.negado', [
+                'nav' => 'negado'
+            ]);
         }
         $conta->update($data);
         return redirect('/contas/' . $request->id)->with('message',
@@ -108,7 +116,9 @@ class ContaService
     {
         $conta = $this->conta->find($id);
         if (!$this->verificaPermissão($conta)) {
-            return view('mensagens.negado');
+            return view('mensagens.negado', [
+                'nav' => 'negado'
+            ]);
         }
         try {
             $conta->delete();
