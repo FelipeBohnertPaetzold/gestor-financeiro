@@ -63,12 +63,14 @@
                 </div>
 
                 <div class="form-group">
-                    <label class="ls-label col-md-12">
-                        <b class="ls-label-text">Confirmar senha</b>
-                        <p class="ls-label-info">Digite sua senha</p>
-                        <input type="password" name="password_confirmation" placeholder="Confirme sua senha"
-                               required>
-                    </label>
+                    <fieldset>
+                        <label class="ls-label col-md-12">
+                            <b class="ls-label-text">Confirmar senha</b>
+                            <p class="ls-label-info">Digite sua senha</p>
+                            <input type="password" name="password_confirmation" placeholder="Confirme sua senha"
+                                   required>
+                        </label>
+                    </fieldset>
                 </div>
                 <div class="col-md-6">
                     <button type="submit" class="ls-btn-primary">
