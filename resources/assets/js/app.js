@@ -52,3 +52,34 @@ $(".ls-alert-success").delay(4000).slideUp(200, function () {
 });
 
 //fim sccess esconder
+
+$(document).ready(function () {
+
+    var eventsPeaple = [];
+    $.ajax({
+        url: "/despesas/ajax",
+        type: "get",
+        async: true,
+
+        success: function (data) {
+            for (var i = 0; i < data.length; i++) {
+                var event = {};
+                event.title = data[i].nome;
+                event.start = data[i].data_vencimento;
+
+                eventsPeaple.push(event);
+            }
+            console.log(eventsPeaple);
+            $('#calendar').fullCalendar({
+                events: eventsPeaple,
+                locale: 'pt-br'
+
+            })
+        }
+    });
+});
+
+
+
+
+

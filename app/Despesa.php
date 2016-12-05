@@ -50,6 +50,11 @@ class Despesa extends Model
         return $this->where('data_vencimento' , '<=', date('Y-m'))->get();
     }
 
+    public function retornaTudoDoUsuario($id)
+    {
+        return $this->where('user_id', '=', $id)->get();
+    }
+
     public function debitarAutomatico()
     {
         return $this->where('debito_automatico', '=', true)

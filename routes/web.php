@@ -31,6 +31,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::group(['prefix' => 'despesas'], function () {
         Route::get('/', 'DespesaController@listaTodasView');
         Route::get('/nova', 'DespesaController@criaNovaView');
+        Route::get('/ajax', 'DespesaController@buscaTodasAjax');
         Route::get('/{id}', 'DespesaController@detalhes');
         Route::get('/deletar/{id}', 'DespesaController@deletarView');
         Route::get('/destroy/{id}', 'DespesaController@destroy');
@@ -54,7 +55,11 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/home', 'DashboardController@viewDashboard');
     Route::get('/logout', 'Auth\LoginController@logout');
 
-
+    Route::get('/agenda', function () {
+        return view('agenda.index', [
+            'nav' => 'agenda'
+        ]);
+    });
 
 });
 

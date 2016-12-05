@@ -43,6 +43,12 @@ class DespesaService
         ]);
     }
 
+    public function buscaTodasAjax()
+    {
+        $data = $this->despesa->retornaTudoDoUsuario(Auth::user()->id);
+        return $data;
+    }
+
     public function detalhes($id)
     {
         if (!$this->verificaPermissao($this->buscaDespesaPorId($id))) {

@@ -85,7 +85,6 @@
 </main>
 
 <!-- We recommended use jQuery 1.10 or up -->
-<script type="text/javascript" src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
 <script src="/js/all.js"></script>
 <script src="http://assets.locaweb.com.br/locastyle/3.9.0/javascripts/locastyle.js" type="text/javascript"></script>
 </body>
