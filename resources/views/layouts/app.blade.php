@@ -46,20 +46,6 @@
 
 <aside class="ls-sidebar">
     <div class="ls-sidebar-inner">
-        <a href="/locawebstyle/documentacao/exemplos//pre-painel"  class="ls-go-prev"><span class="ls-text">Voltar à lista de serviços</span></a>
-
-        <nav class="ls-menu">
-            <ul>
-                <li>
-                    <a href="#" class="ls-ico-cog" title="Configurações">Configurações</a>
-                    <ul>
-                        <li><a href="#">Suporte <i style="float: right" class="ls-ico-envelop"></i></a></li>
-                    </ul>
-                </li>
-            </ul>
-        </nav>
-
-
     </div>
 </aside>
 
