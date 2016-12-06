@@ -22,12 +22,6 @@
             <a href="#" data-ls-module="topbarCurtain" data-target="#ls-help-curtain"></a>
             <a href="#" data-ls-module="topbarCurtain" data-target="#ls-feedback-curtain"></a>
         </div>
-
-        <!-- Dropdown com detalhes da conta de usuário -->
-        <div  class="ls-dropdown ls-user-account">
-            <a href="#" class="ls-ico-user">
-            </a>
-        </div>
     </div>
 
     <span class="ls-show-sidebar ls-ico-menu"></span>

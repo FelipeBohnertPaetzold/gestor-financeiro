@@ -19,7 +19,7 @@
             <fieldset>
                 <label class="ls-label col-md-8 col-xs-12">
                     <b class="ls-label-text">Nome</b>
-                    <p class="ls-label-info">Digite um nome para a conta</p>
+                    <p class="ls-label-info">Digite um nome para a conta (Bradesco, Santander, Carteira...)</p>
                     <input type="text" name="nome" placeholder="Nome da conta" class="ls-field" required>
                 </label>
 

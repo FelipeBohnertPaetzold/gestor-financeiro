@@ -72,7 +72,6 @@
     </div>
 </aside>
 
-
 <main class="ls-main ">
     @if (session('message'))
         <div class="ls-alert-success">
@@ -90,7 +89,6 @@
 
     @yield('content')
 </main>
-
 <!-- We recommended use jQuery 1.10 or up -->
 <script src="/js/all.js"></script>
 <script src="http://assets.locaweb.com.br/locastyle/3.9.0/javascripts/locastyle.js" type="text/javascript"></script>
