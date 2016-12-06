@@ -48,7 +48,7 @@
         <nav class="ls-menu">
             <ul>
                 <li @if($nav == "dashboard") class="ls-active" @endif><a href="/" class="ls-ico-dashboard"
-                                                                         title="Dashboard">Dashboard</a></li>
+                                                                         title="Resumo financeiro">Dashboard</a></li>
                 <li @if($nav == "contas")class="ls-active"@endif>
                     <a href="#" class="ls-ico-stats" title="Contas">Contas</a>
                     <ul>
@@ -58,12 +58,12 @@
                     </ul>
                 </li>
                 <li @if($nav == "depositos") class="ls-active" @endif><a href="/depositos" class="ls-ico-plus"
-                                                                         title="Depositos">Depósitos</a></li>
+                                                                         title="Depósitos">Depósitos</a></li>
                 <li @if($nav == "despesas") class="ls-active" @endif><a href="/despesas" class="ls-ico-minus"
                                                                         title="Despesas">Despesas</a></li>
                 <li @if($nav == "agenda") class="ls-active" @endif><a href="/agenda" class="ls-ico-calendar"
-                                                                      title="Agenda">Agenda de Despesas</a></li>
-                <li @if($nav == "configuracoes") class="ls-active" @endif><a class="ls-ico-paint-format" href="/users/temas">Aparência</a>
+                                                                      title="Liste suas despesas e as veja no calendário">Agenda de Despesas</a></li>
+                <li @if($nav == "configuracoes") class="ls-active" @endif><a title="Mude o tema do seu gerenciador" class="ls-ico-paint-format" href="/users/temas">Aparência</a>
                 </li>
             </ul>
         </nav>
