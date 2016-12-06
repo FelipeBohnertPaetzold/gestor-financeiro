@@ -15669,6 +15669,10 @@ $(".ls-alert-success").delay(4000).slideUp(200, function () {
     $(this).alert('close');
 });
 
+$(".ls-alert-danger").delay(4000).slideUp(200, function () {
+    $(this).alert('close');
+});
+
 //fim sccess esconder
 
 $(document).ready(function () {
@@ -15685,7 +15689,11 @@ $(document).ready(function () {
                 event.title = data[i].nome + '\n ' + 'Valor: ' + currencyFormatted(data[i].valor, 'R$');
                 event.start = data[i].data_vencimento;
 
-                event.color = '#' + data[i].cor;
+                if (data[i].quitada) {
+                    event.color = '#2ecc71'
+                } else {
+                    event.color = '#' + data[i].cor;
+                }
 
                 event.url = '/despesas/' + data[i].id;
 

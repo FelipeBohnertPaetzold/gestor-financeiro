@@ -103,8 +103,11 @@
                                             @endif
                                         </td>
                                         <td style="text-align: center">
-                                            <a href="/despesas/editar/{{$despesa->id}}" title="Editar"
-                                               class="ls-ico-pencil"></a>
+                                            @if(!$despesa->quitada)
+                                                <a href="/despesas/editar/{{$despesa->id}}"
+                                                   title="Editar"
+                                                   class="ls-ico-pencil"></a>
+                                            @endif
                                             <a style="color: #db6664" href="/despesas/deletar/{{$despesa->id}}"
                                                title="Excluir"
                                                class="ls-ico-remove"></a>

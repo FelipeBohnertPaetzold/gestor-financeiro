@@ -62,6 +62,24 @@ class DespesaService
         ]);
     }
 
+    public function editarView($id)
+    {
+        if (!$this->verificaPermissao($this->despesa->find($id))) {
+            return view('mensagens.negado', [
+                'nav' => 'negado'
+            ]);
+        }
+        $despesa = $this->despesa->find($id);
+        if($despesa->quitada){
+            return redirect('/despesas/' . $id)->withErrors('A despesa não pode ser editada pois está quitada!');
+        }
+        return view('despesas.edit', [
+            'despesa' => $this->buscaDespesaPorId($id),
+            'contas' => Auth::user()->contas,
+            'nav' => $this->nav
+        ]);
+    }
+
     public function destroy($id)
     {
         if (!$this->verificaPermissao($this->buscaDespesaPorId($id))) {
@@ -151,6 +169,7 @@ class DespesaService
                 }
                 $s = $ano . '-' . $mes . '-' . $vencimento->format('d') . ' 00:00:00';
                 $data = $request->all();
+                $data['nome'] = $request->nome . ' (parcela ' . ($i + 1) . ')';
                 $data['data_vencimento'] = $s;
                 $data['mensal'] = true;
                 $data['user_id'] = Auth::user()->id;
@@ -172,6 +191,25 @@ class DespesaService
 
         $this->despesa->create($data);
         return redirect('/despesas')->with('message', 'Despesa criada com sucesso!');
+    }
+
+    public function update($request)
+    {
+        $despesa = $this->despesa->find($request->id);
+
+        if (!$this->contaService->verificaPermissao($this->contaService->buscaContaPorId($request->conta_id))) {
+            return view('mensagens.negado', [
+                'nav' => 'negado'
+            ]);
+        }
+
+        if ($despesa->quitada) {
+            return redirect('/despesas/' . $request->id)->withErrors('A despesa não pode ser editada pois está quitada!');
+        }
+
+        $despesa->update($request->all());
+
+        return redirect('/despesas/' . $request->id)->with('message', 'Edição efetuada com sucesso!');
     }
 
     public function pagamentoDeDespesa($despesa, $valor)

@@ -64,7 +64,10 @@
 
         <div class="ls-box ls-board-box">
             <header class="ls-info-header">
-                <h2 class="ls-title-3">{{$despesa->nome}}</h2>
+                <h2 class="ls-title-3">{{$despesa->nome}} @if(!$despesa->quitada)<a
+                            href="/despesas/editar/{{$despesa->id}}"
+                            style="margin-left: 10px;" title="Editar"
+                            class="ls-ico-pencil"></a>@endif</h2>
                 <p class="ls-float-right ls-float-none-xs ls-small-info">Adicionado em
                     <strong>{{date("d/m/Y h:i A", strtotime($despesa->created_at))}}</strong></p>
             </header>

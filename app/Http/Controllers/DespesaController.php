@@ -18,6 +18,16 @@ class DespesaController extends Controller
         return $this->service->listaTodasView();
     }
 
+    public function editarView($id)
+    {
+        return $this->service->editarView($id);
+    }
+
+    public function update(Request $request)
+    {
+        return $this->service->update($request);
+    }
+
     public function buscaTodasAjax()
     {
         return $this->service->buscaTodasAjax();
