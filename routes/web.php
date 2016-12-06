@@ -53,6 +53,10 @@ Route::group(['middleware' => ['auth']], function () {
         Route::post('/criar', 'PagamentoController@store');
     });
 
+    Route::group(['prefix' => 'users'], function () {
+        Route::get('/meus-dados', 'UserController@detalhes');
+    });
+
     Route::get('/', 'DashboardController@viewDashboard');
     Route::get('/home', 'DashboardController@viewDashboard');
     Route::get('/logout', 'Auth\LoginController@logout');
