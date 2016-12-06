@@ -15699,7 +15699,6 @@ $(document).ready(function () {
 
                 eventsPeaple.push(event);
             }
-            console.log(eventsPeaple);
             $('#calendar').fullCalendar({
                 events: eventsPeaple,
                 locale: 'pt-br'
@@ -15723,8 +15722,4 @@ Number.prototype.formatMoney = function (c, d, t) {
         j = (j = i.length) > 3 ? j % 3 : 0;
     return s + (j ? i.substr(0, j) + t : "") + i.substr(j).replace(/(\d{3})(?=\d)/g, "$1" + t) + (c ? d + Math.abs(n - i).toFixed(c).slice(2) : "");
 };
-
-$('colorSelector').ColorPicker(options);
-
-$('colorSelector').ColorPickerSetColor(color);
 //# sourceMappingURL=all.js.map
