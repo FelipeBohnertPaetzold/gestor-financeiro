@@ -12,6 +12,7 @@ class Despesa extends Model
         'descricao',
         'mensal',
         'valor',
+        'cor',
         'quitada' ,
         'debito_automatico',
         'data_vencimento',

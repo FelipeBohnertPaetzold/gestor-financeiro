@@ -14,7 +14,8 @@ var elixir = require('laravel-elixir'),
 elixir(function(mix) {
     mix.styles([
         './resources/assets/css/app.css',
-        './bower_components/fullcalendar/dist/fullcalendar.css'
+        './bower_components/fullcalendar/dist/fullcalendar.css',
+
     ]);
     mix.scripts([
         './bower_components/jquery/dist/jquery.min.js',
@@ -23,6 +24,7 @@ elixir(function(mix) {
         './bower_components/fullcalendar/dist/locale-all.js',
         './node_modules/angular/angular.min.js',
         './resources/assets/js/mask.js',
+        './resources/assets/jscolor/jscolor.min.js',
         './resources/assets/js/app.js'
     ]);
 });

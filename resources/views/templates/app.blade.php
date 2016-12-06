@@ -58,7 +58,7 @@
                 </li>
                 <li @if($nav == "depositos") class="ls-active" @endif><a href="/depositos" class="ls-ico-plus" title="Depositos">Depósitos</a></li>
                 <li @if($nav == "despesas") class="ls-active" @endif><a href="/despesas" class="ls-ico-minus" title="Despesas">Despesas</a></li>
-                <li @if($nav == "agenda") class="ls-active" @endif><a href="#" class="ls-ico-calendar" title="Agenda">Agenda</a></li>
+                <li @if($nav == "agenda") class="ls-active" @endif><a href="/agenda" class="ls-ico-calendar" title="Agenda">Agenda de Despesas</a></li>
                 <li @if($nav == "configuracoes") class="ls-active" @endif>
                     <a href="#" class="ls-ico-cog" title="Configurações">Configurações</a>
                     <ul>

@@ -64,12 +64,22 @@
                         <input type="number" min="1" max="12" name="parcelas" value="1" class="ls-field" placeholder="Parcelas" required>
                     </div>
                 </label>
+
+                <label class="ls-label">
+                    <div class="ls-prefix-group col-md-4">
+                        <b class="ls-label-text">Cor</b>
+                        <p class="ls-label-info">Informe a cor que aparecerá na agenda</p>
+                        <input class="jscolor" name="cor" value="ab2567">
+                    </div>
+                </label>
+
+                <label class="ls-label-text col-md-6">
+                    <input type="checkbox" name="debito_automatico" value="1">
+                    Débito automático
+                </label>
             </fieldset>
 
-            <label class="ls-label-text col-md-12">
-                <input type="checkbox" name="debito_automatico" value="1">
-                Débito automático
-            </label>
+
 
 
             <div class="ls-actions-btn">
