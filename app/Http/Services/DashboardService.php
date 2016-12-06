@@ -14,7 +14,8 @@ use Illuminate\Support\Facades\Auth;
 
 class DashboardService
 {
-    public function viewDashboard(){
+    public function viewDashboard()
+    {
 
         $despesa = new Despesa();
         $despesas = $despesa->despesaMesByUserId(Auth::user()->id);
@@ -23,7 +24,9 @@ class DashboardService
 
 
         foreach ($despesas as $desp) {
-            $total_despesas += $desp->valor;
+            if (!$desp->quitada){
+                $total_despesas += $desp->valor;
+            }
         }
 
         foreach (Auth::user()->contas as $conta) {
