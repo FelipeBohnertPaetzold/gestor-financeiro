@@ -63,13 +63,7 @@
                                                                         title="Despesas">Despesas</a></li>
                 <li @if($nav == "agenda") class="ls-active" @endif><a href="/agenda" class="ls-ico-calendar"
                                                                       title="Agenda">Agenda de Despesas</a></li>
-                <li @if($nav == "configuracoes") class="ls-active" @endif>
-                    <a href="#" class="ls-ico-cog" title="Configurações">Configurações</a>
-                    <ul>
-                        <li><a href="/users/temas">Aparência <i style="float: right"
-                                                                class="ls-ico-paint-format"></i></a></li>
-                        <li><a href="#">Suporte <i style="float: right" class="ls-ico-envelop"></i></a></li>
-                    </ul>
+                <li @if($nav == "configuracoes") class="ls-active" @endif><a class="ls-ico-paint-format" href="/users/temas">Aparência</a>
                 </li>
             </ul>
         </nav>
