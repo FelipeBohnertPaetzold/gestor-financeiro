@@ -25,22 +25,20 @@
                     </label>
                 </div>
 
-                <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-                    <label class="ls-label col-md-12">
+                <div class="form-group">
+                    <label class="ls-label col-md-12 {{ $errors->has('email') ? ' ls-error' : '' }}">
                         <b class="ls-label-text">Email</b>
                         <p class="ls-label-info">Digite seu email</p>
                         <input type="email" name="email" placeholder="Email" required>
                         @if ($errors->has('email'))
-                            <span class="help-block">
-                                        <strong>{{ $errors->first('email') }}</strong>
-                                    </span>
+                            <small class="ls-help-message">{{ $errors->first('email') }}</small>
                         @endif
                     </label>
                 </div>
 
-                <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
+                <div class="form-group">
                     <fieldset>
-                        <label class="ls-label col-md-12">
+                        <label class="ls-label col-md-12 {{ $errors->has('password') ? ' ls-error' : '' }}">
                             <b class="ls-label-text">Senha</b>
                             <p class="ls-label-info">Digite sua senha</p>
                             <div class="ls-prefix-group">
@@ -53,9 +51,7 @@
                                    href="#">
                                 </a>
                                 @if ($errors->has('password'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('password') }}</strong>
-                                    </span>
+                                    <small class="ls-help-message">{{ $errors->first('password') }}</small>
                                 @endif
                             </div>
                         </label>
