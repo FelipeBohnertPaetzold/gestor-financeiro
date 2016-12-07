@@ -28,4 +28,25 @@ class UserService
             'nav' => ''
         ]);
     }
+
+    public function editarView()
+    {
+        return view('users.edit', [
+            'user' => Auth::user(),
+            'nav' => ''
+        ]);
+    }
+
+    public function update($request)
+    {
+        if (Auth::user()->id != $request->id) {
+            return view('mensagens.negado', [
+                'nav' => 'negado'
+            ]);
+        }
+
+        $user = $this->user->find($request->id);
+        $user->update($request->all());
+        return redirect('/users/meus-dados')->with('message', 'Usuário alterado com sucesso!');
+    }
 }

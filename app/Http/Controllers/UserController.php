@@ -16,4 +16,14 @@ class UserController extends Controller
     {
         return $this->service->detalhes();
     }
+
+    public function editarView()
+    {
+        return $this->service->editarView();
+    }
+
+    public function update(Request $request)
+    {
+        return $this->service->update($request);
+    }
 }
