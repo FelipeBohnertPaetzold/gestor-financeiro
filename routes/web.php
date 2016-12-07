@@ -58,6 +58,7 @@ Route::group(['middleware' => ['auth']], function () {
         Route::get('/meus-dados/editar', 'UserController@editarView');
         Route::get('/alterar-senha', 'UserController@alterarSenhaView');
         Route::post('/update', 'UserController@update');
+        Route::post('/alterar-senha/update', 'UserController@alterarSenha');
     });
 
     Route::get('/', 'DashboardController@viewDashboard');
