@@ -20,8 +20,6 @@
             <nav class="ls-dropdown-nav ls-user-menu">
                 <ul>
                     <li><a href="/users/meus-dados">Meus dados</a></li>
-                    <li><a href="#">Faturas</a></li>
-                    <li><a href="#">Planos</a></li>
                     <li><a href="{{ url('/logout') }}">Sair</a></li>
                 </ul>
             </nav>

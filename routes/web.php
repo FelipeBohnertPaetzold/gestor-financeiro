@@ -56,6 +56,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::group(['prefix' => 'users'], function () {
         Route::get('/meus-dados', 'UserController@detalhes');
         Route::get('/meus-dados/editar', 'UserController@editarView');
+        Route::get('/alterar-senha', 'UserController@alterarSenhaView');
         Route::post('/update', 'UserController@update');
     });
 

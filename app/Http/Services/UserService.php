@@ -10,6 +10,7 @@ namespace App\Http\Services;
 
 
 use App\User;
+use Illuminate\Database\QueryException;
 use Illuminate\Support\Facades\Auth;
 
 class UserService
@@ -45,8 +46,13 @@ class UserService
             ]);
         }
 
-        $user = $this->user->find($request->id);
-        $user->update($request->all());
-        return redirect('/users/meus-dados')->with('message', 'Usuário alterado com sucesso!');
+        try {
+            $user = $this->user->find($request->id);
+            $user->update($request->all());
+            return redirect('/users/meus-dados')->with('message', 'Usuário alterado com sucesso!');
+        } catch (QueryException $e) {
+            $errors = ['email' => 'Email já existente'];
+            return redirect('/users/meus-dados/editar')->withErrors($errors);
+        }
     }
 }

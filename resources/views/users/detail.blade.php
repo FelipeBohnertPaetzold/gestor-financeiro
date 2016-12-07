@@ -16,7 +16,9 @@
 
         <div class="ls-box ls-board-box ls-box-gray">
             <header class="ls-info-header">
-                <h2 class="ls-title-3">Seus dados</h2>
+                <h2 class="ls-title-3">Seus dados <a href="/users/meus-dados/editar"
+                                                     style="margin-left: 10px;" title="Editar"
+                                                     class="ls-ico-pencil"></a></h2>
                 <p class="ls-float-right ls-float-none-xs ls-small-info">
                     Criado em <strong>{{date("d/m/Y h:i A", strtotime($user->created_at))}}</strong>
                 </p>

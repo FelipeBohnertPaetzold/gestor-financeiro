@@ -26,4 +26,9 @@ class UserController extends Controller
     {
         return $this->service->update($request);
     }
+
+    public function alterarSenhaView()
+    {
+        return $this->service->alterarSenhaView();
+    }
 }

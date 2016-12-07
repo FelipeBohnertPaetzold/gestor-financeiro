@@ -19,11 +19,20 @@
             {{ csrf_field() }}
             <input type="hidden" name="id" value="{{$user->id}}">
             <fieldset>
-                <label class="ls-label col-md-12 col-xs-12">
+                <label class="ls-label col-md-6 col-xs-12">
                     <b class="ls-label-text">Nome</b>
                     <p class="ls-label-info">Digite seu nome</p>
-                    <input type="text" name="name" value="{{$user->name}}" placeholder="Nome da conta" class="ls-field"
+                    <input autofocus type="text" name="name" value="{{$user->name}}" placeholder="Nome" class="ls-field"
                            required>
+                </label>
+                <label class="ls-label col-md-6 col-xs-12 {{ $errors->has('email') ? ' ls-error' : '' }}">
+                    <b class="ls-label-text">Email</b>
+                    <p class="ls-label-info">Digite seu email</p>
+                    <input type="email" name="email" value="{{$user->email}}" placeholder="Email" class="ls-field"
+                           required>
+                    @if ($errors->has('email'))
+                        <small class="ls-help-message">{{ $errors->first('email') }}</small>
+                    @endif
                 </label>
             </fieldset>
 
