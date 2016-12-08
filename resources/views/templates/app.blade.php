@@ -4,28 +4,10 @@
     <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no,minimal-ui">
     <link rel="stylesheet" type="text/css" href="//assets.locaweb.com.br/locastyle/3.8.5/stylesheets/locastyle.css">
     <link rel="stylesheet" type="text/css" href="/css/all.css">
+    <title>Gestor Financeiro</title>
 </head>
 <body class="{{Auth::user()->tema->chave_de_tema}}">
 <div class="ls-topbar">
-
-    <!-- Barra de Notificações -->
-    {{--<div class="ls-notification-topbar">--}}
-
-        {{--<!-- Dropdown com detalhes da conta de usuário -->--}}
-        {{--<div data-ls-module="dropdown" class="ls-dropdown ls-user-account">--}}
-            {{--<a href="#" class="ls-ico-user">--}}
-                {{--<span class="ls-name">Olá, {{ Auth::user()->name }}</span>--}}
-            {{--</a>--}}
-
-            {{--<nav class="ls-dropdown-nav ls-user-menu">--}}
-                {{--<ul>--}}
-                    {{--<li><a href="/users/meus-dados">Meus dados</a></li>--}}
-                    {{--<li><a href="{{ url('/logout') }}">Sair</a></li>--}}
-                {{--</ul>--}}
-            {{--</nav>--}}
-        {{--</div>--}}
-    {{--</div>--}}
-
 
     <div class="ls-notification-topbar">
 
