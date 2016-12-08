@@ -17,7 +17,7 @@
 
         <div class="ls-box ls-board-box">
             <header class="ls-info-header">
-                <h2 class="ls-title-3">Consumo de envios</h2>
+                <h2 class="ls-title-3">Depósito</h2>
                 <p class="ls-float-right ls-float-none-xs ls-small-info">Depositado em:
                     <strong>{{date("d/m/Y h:i A", strtotime($deposito->created_at))}}</strong></p>
             </header>
