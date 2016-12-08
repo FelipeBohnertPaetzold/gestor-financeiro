@@ -36,6 +36,43 @@ class DepositoService
         ]);
     }
 
+    public function filtroData($request)
+    {
+        $inicial = \DateTime::createFromFormat('d/m/Y', $request->inicial);
+        $final = \DateTime::createFromFormat('d/m/Y', $request->final);
+
+        $ini = $inicial->format('Y') . '-' . $inicial->format('m') . '-' . $inicial->format('d') . ' 00:00:00';
+        $fin = $final->format('Y') . '-' . $final->format('m') . '-' . $final->format('d') . ' 00:00:00';
+
+        $depositos = $this->deposito->byDate($ini, $fin, Auth::user()->id);
+        $data = Auth::user()->contas->all();
+
+        foreach ($data as $conta) {
+            $posicao = 0;
+
+            $valor = 0;
+            foreach ($depositos as $deposito) {
+                $valor += $deposito->valor;
+                if ($conta->id == $deposito->conta_id) {
+
+                    array_add($conta, " $posicao", $deposito);
+                    $posicao++;
+                }
+            }
+        }
+
+        $total = number_format($valor, 2, ",", ".");
+
+        return view('depositos.filtro_data', [
+            'data' => $data,
+            'total' => $total,
+            'nav' => $this->nav,
+            'inicial' => $request->inicial,
+            'final' => $request->final
+        ]);
+    }
+
+
     public function detalhes($id)
     {
         $deposito = $this->deposito->find($id);

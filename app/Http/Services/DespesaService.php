@@ -146,7 +146,9 @@ class DespesaService
         return view('despesas.filtro_data', [
             'data' => $data,
             'total' => $total,
-            'nav' => $this->nav
+            'nav' => $this->nav,
+            'inicial' => $request->inicial,
+            'final' => $request->final
         ]);
     }
 

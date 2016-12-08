@@ -46,6 +46,7 @@ Route::group(['middleware' => ['auth']], function () {
         Route::get('/novo/{conta_id}', 'DepositoController@criarNovoView');
         Route::get('/{id}', 'DepositoController@detalhes');
         Route::post('/criar', 'DepositoController@store');
+        Route::post('/filtro/data', 'DepositoController@filtroData');
     });
 
     Route::group(['prefix' => 'pagamentos'], function () {

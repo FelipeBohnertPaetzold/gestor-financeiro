@@ -26,6 +26,14 @@ class Deposito extends Model
         return $this->belongsTo(Conta::class, 'conta_id');
     }
 
+    public function byDate($inicial, $final, $user_id)
+    {
+        return $this->where('user_id', '=', $user_id)
+            ->where('created_at', '>=', $inicial)
+            ->where('created_at', '<=', $final)
+            ->get();
+    }
+
     public function byMes($user_id)
     {
         return $this->where('user_id', '=', $user_id)

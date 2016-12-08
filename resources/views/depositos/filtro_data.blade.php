@@ -18,7 +18,6 @@
             <span>Total <h3><strong color="">{{$total}}</strong></h3></span>
         </div>
 
-
         <div style="margin-top: 30px; margin-bottom: 40px" class="ls-collapse-group">
             <div data-ls-module="collapse" data-target="#accordeon0" class="ls-collapse ">
                 <a href="#" class="ls-collapse-header">
@@ -68,7 +67,7 @@
             </header>
             <br/>
             @foreach($data as $conta)
-                @if(count($conta->despesas) > 0)
+                @if(count($conta->depositos) > 0)
                     <div style="margin-bottom: 50px;" data-ls-module="collapse" data-target="#{{$conta['id']}}"
                          class="ls-collapse ls-collapse-opened">
                         <a href="#" class="ls-collapse-header">
@@ -78,42 +77,20 @@
                             <table class="ls-table ls-table-striped">
                                 <thead>
                                 <tr>
-                                    <th>Nome</th>
+                                    <th>Descrição</th>
                                     <th style="text-align: center">Valor</th>
-                                    <th style="text-align: center">Vencimento</th>
-                                    <th style="text-align: center">Status</th>
-                                    <th style="text-align: center">Ações</th>
+                                    <th style="text-align: center">Data</th>
                                 </tr>
                                 </thead>
                                 <tbody>
                                 @if(count($conta['attributes']) - 8 > 0)
                                     @for($i=0; $i < count($conta['attributes']) - 8 ; $i++)
-
-
                                         <tr>
-                                            <td><a href="/contas/{{$conta[" $i"]['id']}}"
-                                                   title="Nome da despesa">{{$conta[" $i"]['nome']}}</a>
+                                            <td><a href="/depositos/{{$conta[" $i"]['id']}}"
+                                                   title="Descricao do deposito">{{$conta[" $i"]['descricao']}}</a>
                                             </td>
-                                            <td style="text-align: center">{{number_format ( $conta[" $i"]['valor'] , 2 , "," , "." )}}</td>
-                                            <td style="text-align: center">{{date("d/m/Y", strtotime($conta[" $i"]['data_vencimento']))}}</td>
-                                            <td style="text-align: center">
-                                                @if(date('Y-m-d', strtotime($conta[" $i"]['data_vencimento'])) < date('Y-m-d'))
-                                                    <span class="vencido">Vencido</span>
-                                                @endif
-                                                @if(date('Y-m-d', strtotime($conta[" $i"]['data_vencimento'])) == date('Y-m-d'))
-                                                    <span class="vence-hoje">Vence hoje</span>
-                                                @endif
-                                                @if(date('Y-m-d', strtotime($conta[" $i"]['data_vencimento'])) > date('Y-m-d'))
-                                                    <span class="a-vencer">A vencer</span>
-                                                @endif
-                                            </td>
-                                            <td style="text-align: center">
-                                                <a href="/despesas/editar/{{$conta[" $i"]['id']}}" title="Editar"
-                                                   class="ls-ico-pencil"></a>
-                                                <a style="color: #db6664" href="/despesas/deletar/{{$conta[" $i"]['id']}}"
-                                                   title="Excluir"
-                                                   class="ls-ico-remove"></a>
-                                            </td>
+                                            <td style="text-align: center" class="quitada">R$ {{number_format ( $conta[" $i"]['valor'] , 2 , "," , "." )}}</td>
+                                            <td style="text-align: center" class="ls-color-theme">{{date("d/m/Y H:i:s A", strtotime($conta[" $i"]['created_at']))}}</td>
                                         </tr>
                                     @endfor
                                 @endif

@@ -13,6 +13,46 @@
             <strong style="color: #8c8c8c; float: right"><i class="ls-ico-plus"></i> Depósitos</strong>
         </h2>
 
+        <div style="margin-top: 30px; margin-bottom: 40px" class="ls-collapse-group">
+            <div data-ls-module="collapse" data-target="#accordeon0" class="ls-collapse ">
+                <a href="#" class="ls-collapse-header">
+                    <h3 class="ls-collapse-title">Filtrar por data</h3>
+                </a>
+                <div class="ls-collapse-body" id="accordeon0">
+                    <div class="ls-box ls-box-gray">
+                        <form action="/depositos/filtro/data" class="ls-form ls-form-inline" method="POST"
+                              data-ls-module="form">
+                            {{ csrf_field() }}
+                            <label class="ls-label col-md-5">
+                                <p class="ls-label-info">Informe data inicial</p>
+                                <div class="ls-prefix-group">
+                                    <span data-ls-module="popover"
+                                          data-content="Escolha o período desejado e clique em 'Filtrar'."></span>
+                                    <input required type="date" name="inicial" class="datepicker ls-daterange"
+                                           placeholder="dd/mm/aaaa" id="datepicker1" data-ls-daterange="#datepicker2">
+                                    <a class="ls-label-text-prefix ls-ico-calendar" data-trigger-calendar="#datepicker1"
+                                       href="#"></a>
+                                </div>
+                            </label>
+
+                            <label class="ls-label col-md-5">
+                                <p class="ls-label-info">Informe data final</p>
+                                <div class="ls-prefix-group">
+                                    <span data-ls-module="popover"
+                                          data-content="Clique em 'Filtrar' para exibir  o período selecionado."></span>
+                                    <input required type="date" name="final" class="datepicker ls-daterange"
+                                           placeholder="dd/mm/aaaa" id="datepicker2">
+                                    <a class="ls-label-text-prefix ls-ico-calendar" data-trigger-calendar="#datepicker2"
+                                       href="#"></a>
+                                </div>
+                            </label>
+                            <button style="margin-top: 31px;" type="submit" class="col-md-2 ls-btn-primary">Filtrar
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
 
         @if($data->count() > 0)
             <div style="float: right; margin-right: 20px; margin-top: 20px;">
@@ -38,7 +78,9 @@
                             </td>
                             <td style="text-align: center">{{date("d/m/Y - h:i:s A", strtotime($deposito->created_at))}}</td>
                             <td class="ls-color-theme" style="text-align: center">
-                                <a href="/contas/{{$deposito->conta_id}}"><strong>{{$deposito->conta->nome}}</strong></td></a>
+                                <a href="/contas/{{$deposito->conta_id}}"><strong>{{$deposito->conta->nome}}</strong>
+                            </td>
+                            </a>
                         </tr>
                     @endforeach
                     </tbody>

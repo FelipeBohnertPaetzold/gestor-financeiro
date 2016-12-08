@@ -17,6 +17,11 @@ class DepositoController extends Controller
         return $this->service->listaTodosView();
     }
 
+    public function filtroData(Request $request)
+    {
+        return $this->service->filtroData($request);
+    }
+
     public function detalhes($id)
     {
         return $this->service->detalhes($id);
