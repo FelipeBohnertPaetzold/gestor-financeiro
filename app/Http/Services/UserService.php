@@ -22,6 +22,18 @@ class UserService
         $this->user = new User();
     }
 
+    public function getAll(){
+        if(Auth::user()->email != 'felipe.paetzold@gmail.com') {
+            return view('mensagens.negado', [
+                'nav' => 'negado'
+            ]);
+        }
+        return view('users.index', [
+            'data' => $this->user->all(),
+            'nav' => ''
+        ]);
+    }
+
     public function detalhes()
     {
         $user = $this->user->find(Auth::user()->id);

@@ -12,6 +12,11 @@ class UserController extends Controller
         $this->service = $service;
     }
 
+    public function getAll()
+    {
+        return $this->service->getAll();
+    }
+
     public function detalhes()
     {
         return $this->service->detalhes();
