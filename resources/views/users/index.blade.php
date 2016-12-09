@@ -9,7 +9,7 @@
     <div class="container-fluid">
         <h2 class="ls-title-intro">
             <span style="font-size: 20px; color: #8c8c8c">
-                Você está vendo "Seus Dados"!
+                Você está vendo "Todos os Usuários"!
             </span>
             <strong style="color: #8c8c8c; float: right"><i class="ls-ico-user"></i> Usuários</strong>
         </h2>
