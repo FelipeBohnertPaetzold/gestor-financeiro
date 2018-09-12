@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Created by PhpStorm.
  * User: TI2
@@ -74,7 +75,7 @@ class ContaService
     public function deletarView($id)
     {
         $conta = $this->conta->find($id);
-        if(!$this->verificaPermissao($conta)) {
+        if (!$this->verificaPermissao($conta)) {
             return view('mensagens.negado', [
                 'nav' => 'negado'
             ]);
@@ -91,7 +92,8 @@ class ContaService
         $data['user_id'] = Auth::user()->id;
         $data['saldo_atual'] = $request->saldo;
         $this->conta->create($data);
-        return redirect('/contas')->with('message',
+        return redirect('/contas')->with(
+            'message',
             'Conta ' . $request['nome'] . ' criada com sucesso!'
         );
     }
@@ -107,7 +109,8 @@ class ContaService
             ]);
         }
         $conta->update($data);
-        return redirect('/contas/' . $request->id)->with('message',
+        return redirect('/contas/' . $request->id)->with(
+            'message',
             'Conta salva com sucesso!'
         );
     }
@@ -115,7 +118,7 @@ class ContaService
     public function destroy($id)
     {
         $conta = $this->conta->find($id);
-        if (!$this->verificaPermissão($conta)) {
+        if (!$this->verificaPermissao($conta)) {
             return view('mensagens.negado', [
                 'nav' => 'negado'
             ]);
