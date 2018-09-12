@@ -15750,9 +15750,11 @@ $(document).ready(function () {
 });
 
 function currencyFormatted(value, str_cifrao) {
-    console.log(value)
-    window.v = value
-    return str_cifrao + ' ' + value.formatMoney(2, ',', '.');
+    if (parseFloat(value).formatMoney) {
+        return str_cifrao + ' ' + parseFloat(value).formatMoney(2, ',', '.');
+    }
+
+    return str_cifrao + ' ' + value;
 }
 
 //# sourceMappingURL=all.js.map
